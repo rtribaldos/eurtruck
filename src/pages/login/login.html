@@ -1,0 +1,33 @@
+<div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
+  <div class="flb">
+    <div class="Aligner-item Aligner-item--top"></div>
+    <img src="assets/eurTruck.png">
+    <div class="Aligner-item Aligner-item--bottom"></div>
+  </div>
+</div>
+
+
+<ion-content padding>
+
+  <ion-img src="assets/img/eurTruck4.png"></ion-img>
+
+  <!--Search graphic by <a href="http://www.flaticon.com/authors/icomoon">Icomoon</a> from <a href="http://www.flaticon.com/">Flaticon</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>. Made with <a href="http://logomakr.com" title="Logo Maker">Logo Maker</a>-->
+  
+  <form id="login-form">
+    
+  <br> 
+    
+    <div class="row" id="row-btn-2">
+      <ion-col col-12 id="col-btn-mail">
+        <button ion-button id="google-login" (click)="onGoogleLogin()" color="googlecolor"><ion-icon name="logo-google"></ion-icon></button>
+      </ion-col>
+
+     
+    </div>
+  </form>
+
+  
+
+  <button ion-button clear (click)="goSignUp()">Registrate!</button>
+
+</ion-content>

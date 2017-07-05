@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Ofertas
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="creaViaje()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor='let viaje of viajes | async'>
+      <ion-item>
+       <ion-label>{{ viaje.destino }}</ion-label>
+        
+      </ion-item>
+       <ion-item-options> 
+        <button ion-button color="danger" (click)="removeViaje(viaje)">
+          Borrar
+        </button>
+       </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

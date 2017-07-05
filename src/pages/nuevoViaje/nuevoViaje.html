@@ -1,0 +1,90 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>
+        Oferta
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button icon-left (click)="prev()"><ion-icon name="arrow-back"></ion-icon> Anterior</button>
+      </ion-buttons>
+      <ion-buttons end>
+        <button ion-button icon-right (click)="next()">Siguiente <ion-icon name="arrow-forward"></ion-icon></button>
+      </ion-buttons>
+    </ion-navbar>
+</ion-header>
+ 
+<ion-content>
+ 
+  <ion-slides #signupSlider pager>
+  
+    <ion-slide>
+  
+      <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+  
+      <ion-list no-lines>
+  
+          <form [formGroup]="slideOneForm">
+  
+              <ion-item>
+                  <ion-label floating>Destino</ion-label>
+                  <ion-input formControlName="destino" type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label floating>Carga</ion-label>
+                  <ion-input formControlName="carga" type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label floating>Fecha de carga</ion-label>
+                  <ion-input formControlName="fechac" type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label floating>Fecha de descarga</ion-label>
+                  <ion-input formControlName="fechad" type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label floating>Mercancía</ion-label>
+                  <ion-input formControlName="mercancia" type="text"></ion-input>
+              </ion-item>
+         
+             
+  
+          </form>
+  
+      </ion-list>
+  
+    </ion-slide>
+  
+    <ion-slide>
+  
+      <ion-list no-lines>
+  
+          <form [formGroup]="slideTwoForm"> 
+  
+              <ion-item>
+                  <ion-label floating>Origen</ion-label>
+                  <ion-input  formControlName="origen" type="text"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label floating>Especificaciones Lavados</ion-label>
+                  <ion-input  formControlName="especificaciones" type="text"></ion-input>
+              </ion-item>
+               <ion-item>
+                  <ion-label floating>Código de Lavado</ion-label>
+                  <ion-input  formControlName="codigoLavado" type="text"></ion-input>
+              </ion-item>
+      
+                <ion-item>
+                  <ion-label floating>Observaciones</ion-label>
+                  <ion-textarea formControlName="observaciones"></ion-textarea>
+              </ion-item>
+  
+          </form>
+  
+      </ion-list>
+  
+      <button ion-button full color="primary" (click)="save()">Crear Viaje</button>
+  
+    </ion-slide>
+  
+  </ion-slides>
+ 
+</ion-content>
