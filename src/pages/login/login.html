@@ -7,27 +7,21 @@
 </div>
 
 
-<ion-content padding>
+<!-- <ion-nav-title><img src="img/logo.png" width="40"></ion-nav-title> -->
 
-  <ion-img src="assets/img/eurTruck4.png"></ion-img>
+  <ion-content class="padding">
 
-  <!--Search graphic by <a href="http://www.flaticon.com/authors/icomoon">Icomoon</a> from <a href="http://www.flaticon.com/">Flaticon</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>. Made with <a href="http://logomakr.com" title="Logo Maker">Logo Maker</a>-->
-  
-  <form id="login-form">
-    
-  <br> 
-    
-    <div class="row" id="row-btn-2">
-      <ion-col col-12 id="col-btn-mail">
-        <button ion-button id="google-login" (click)="onGoogleLogin()" color="googlecolor"><ion-icon name="logo-google"></ion-icon></button>
-      </ion-col>
+  <div class="row responsive-sm padding remvoeBP">
+	  <div class="col">
+			<div class="app-logo"><img src="assets/img/eurTruck4.png"></div> 
+			
+			
 
-     
-    </div>
-  </form>
+			<div class="loginButton">
+        <button class="google-sign-in button button-block" (click)="onGoogleLogin()" ion-button>Entrar con cuenta de Google</button></div>
+	  </div>
+  </div>
 
-  
 
-  <button ion-button clear (click)="goSignUp()">Registrate!</button>
+  </ion-content>
 
-</ion-content>

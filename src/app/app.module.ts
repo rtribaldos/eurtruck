@@ -18,16 +18,17 @@ import { AngularFireModule } from 'angularfire2';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../providers/auth-service';
+import { UserFilterPipe } from '../providers/userfilter';
 
 /*YOU HAVE TO PUT YOUR APIKEY FROM YOUR FIREBASE COUNT*/
 
 export const firebaseConfig = {
-    apiKey: "AIzaSyDk7IOVZ-c3C_fa4udSSzelJded1ylKios",
-    authDomain: "etransport-5e753.firebaseapp.com",
-    databaseURL: "https://etransport-5e753.firebaseio.com",
-    projectId: "etransport-5e753",
-    storageBucket: "etransport-5e753.appspot.com",
-    messagingSenderId: "688102504376"
+    apiKey: "AIzaSyAAjsdBBz-cKodLpnraTApfJN2i92R4bBw",
+    authDomain: "etrans-95c74.firebaseapp.com",
+    databaseURL: "https://etrans-95c74.firebaseio.com",
+    projectId: "etrans-95c74",
+    storageBucket: "etrans-95c74.appspot.com",
+    messagingSenderId: "507909632345"
 };
 
 @NgModule({
@@ -40,7 +41,8 @@ export const firebaseConfig = {
     MyJobsPage,
     LoginPage,
     SignUpPage,
-    TabsPage
+    TabsPage,
+    UserFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -61,6 +63,7 @@ export const firebaseConfig = {
   ],
   providers: [
     AuthService,
+    UserFilterPipe,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

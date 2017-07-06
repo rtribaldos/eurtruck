@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from 'ionic-angular';
-import { FirebaseListObservable, AngularFireDatabase  } from 'angularfire2/database';
+import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
 import { OfertasPage } from '../ofertas/ofertas';
  
 @Component({
@@ -12,6 +12,7 @@ export class MyJobsPage {
  
     @ViewChild('signupSlider') signupSlider: any;
     viajes: FirebaseListObservable<any>;  
+    userProfile: FirebaseObjectObservable<any>;
  
     slideOneForm: FormGroup;
     slideTwoForm: FormGroup;
@@ -22,6 +23,8 @@ export class MyJobsPage {
         public database: AngularFireDatabase) {
 
       this.viajes = this.database.list('/viajes');
+      let localUser = JSON.parse(window.localStorage.getItem('user'));
+      this.userProfile = this.database.object('/users/'+localUser.uid);
       
       this.slideOneForm = formBuilder.group({
           destino: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],

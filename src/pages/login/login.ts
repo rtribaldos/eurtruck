@@ -115,7 +115,8 @@ export class LoginPage implements OnInit{
     }).then(function(response){
       let user = {
         email:response.auth.email,
-        picture:response.auth.photoURL
+        picture:response.auth.photoURL,
+        uid:response.auth.uid
       };
       window.localStorage.setItem('user',JSON.stringify(user));
       self.navCtrl.push(TabsPage);

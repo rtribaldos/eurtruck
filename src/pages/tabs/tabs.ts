@@ -11,12 +11,12 @@ import { MyJobsPage } from '../myjobs/myjobs';
 })
 export class TabsPage {
 
+
   tab1Root = OfertasPage;
   tab2Root = ChatsPage;
   tab3Root = ProfilePage;
   tab4Root = MyJobsPage;
 
   constructor() {
-
   }
 }
