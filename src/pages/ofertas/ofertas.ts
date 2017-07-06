@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
-import { FirebaseListObservable, AngularFireDatabase  } from 'angularfire2/database';
+import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
 import { NuevoViajePage } from '../nuevoViaje/nuevoViaje';
 
 @IonicPage()
@@ -13,6 +13,8 @@ export class OfertasPage {
   tasks: FirebaseListObservable<any>;
   viajes: FirebaseListObservable<any>;
 
+  userProfile: FirebaseObjectObservable<any>;
+
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -20,6 +22,8 @@ export class OfertasPage {
   ) {
     
     this.viajes = this.database.list('/viajes');
+    let localUser = JSON.parse(window.localStorage.getItem('user'));
+    this.userProfile = this.database.object('/users/'+localUser.uid);
   }
   
   creaViaje(){
