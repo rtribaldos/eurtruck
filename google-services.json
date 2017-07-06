@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "507909632345",
+    "firebase_url": "https://etrans-95c74.firebaseio.com",
+    "project_id": "etrans-95c74",
+    "storage_bucket": "etrans-95c74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507909632345:android:4a5570b2be54fd8a",
+        "android_client_info": {
+          "package_name": "com.ionicframework.findjob486787"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507909632345-29bbek30kiqfm0j6c1ggpv7cpinrqtae.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ionicframework.findjob486787",
+            "certificate_hash": "6565283e493018639e68ded878ccb1acc75bea50"
+          }
+        },
+        {
+          "client_id": "507909632345-fbshfhg897sfa7o475va6ppb68i13e3d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLVyzjMCxsNoBdD5jqDw1PWOOcElASXDg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507909632345-fbshfhg897sfa7o475va6ppb68i13e3d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -18,6 +18,8 @@ import { AngularFireModule } from 'angularfire2';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../providers/auth-service';
+import { AuthProvider } from '../providers/auth-provider';
+
 import { UserFilterPipe } from '../providers/userfilter';
 
 /*YOU HAVE TO PUT YOUR APIKEY FROM YOUR FIREBASE COUNT*/
@@ -63,6 +65,7 @@ export const firebaseConfig = {
   ],
   providers: [
     AuthService,
+    AuthProvider,
     UserFilterPipe,
     StatusBar,
     SplashScreen,
