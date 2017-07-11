@@ -1,6 +1,7 @@
+import { Injectable, EventEmitter, Inject } from '@angular/core';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { NavController, AlertController, LoadingController } from 'ionic-angular';
-import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { AuthProviders, AngularFire, FirebaseAuthState, AuthMethods, FirebaseApp  } from 'angularfire2';
 import { TabsPage } from '../tabs/tabs';
 import { SignUpPage } from '../signup/signup';
 import { AuthProvider } from '../../providers/auth-provider';
@@ -12,13 +13,19 @@ import { auth } from 'firebase'; //needed for the GoogleAuthProvider
   selector: 'page-login',
   templateUrl: 'login.html'
 })
+@Injectable()
 export class LoginPage implements OnInit{
 	root:any;
   splash = true;
   secondPage = LoginPage;
+  prueba = 'aaaaa';
+  public firebase : any;
+  private authState: FirebaseAuthState;
+  public onAuth: EventEmitter<FirebaseAuthState> = new EventEmitter();
 
-  constructor(public navCtrl: NavController,public af: AngularFire, private platform: Platform, public element: ElementRef, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
-  	window.localStorage.removeItem('user');
+  constructor(public navCtrl: NavController,public af: AngularFire, private googlePlus: GooglePlus, private platform: Platform, public element: ElementRef, public loadingCtrl: LoadingController, @Inject(FirebaseApp)firebase: any, public alertCtrl: AlertController) {
+  	this.firebase = firebase;
+    window.localStorage.removeItem('user');
   	this.element.nativeElement
   }
 
@@ -149,9 +156,12 @@ export class LoginPage implements OnInit{
     let self = this;
 
     if (this.platform.is('cordova')) {
+      console.log("OOOOOOOOOOOO");
        return GooglePlus.login({
-          'webClientId':'507909632345-29bbek30kiqfm0j6c1ggpv7cpinrqtae.apps.googleusercontent.com' //your Android reverse client id
+          'webClientId':'634619610615-g9v08cia24pal3afcqisk4necahkg001.apps.googleusercontent.com' //your Android reverse client id
         }).then(userData => {
+          console.log("!!!!!!!!!!!!!!!!!!!!!", userData);
+          this.prueba = JSON.stringify(userData);
           var token = userData.idToken;
           let user = {
             email:userData.email,
@@ -159,9 +169,16 @@ export class LoginPage implements OnInit{
             uid:userData.userId
           };
           window.localStorage.setItem('user',JSON.stringify(user));
-          self.navCtrl.push(TabsPage);
+          const googleCredential = auth.GoogleAuthProvider.credential(token, null);
+          this.firebase.auth().signInWithCredential(googleCredential).then((success)=>{
+            self.navCtrl.push(TabsPage);
+          }).catch(error => {
+            console.log(error);
+            this.prueba = JSON.stringify(error);
+          });
         }).catch(error => {
             console.log(error);
+            this.prueba = JSON.stringify(error);
             //observer.error(error);
         });
       } else {
@@ -182,6 +199,11 @@ export class LoginPage implements OnInit{
       }
 
   }
+
+
+
+
+
 
  public goSignUp() {
    	this.navCtrl.push(SignUpPage);

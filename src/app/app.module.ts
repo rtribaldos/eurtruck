@@ -21,16 +21,17 @@ import { AuthService } from '../providers/auth-service';
 import { AuthProvider } from '../providers/auth-provider';
 
 import { UserFilterPipe } from '../providers/userfilter';
+import { GooglePlus } from 'ionic-native';
 
 /*YOU HAVE TO PUT YOUR APIKEY FROM YOUR FIREBASE COUNT*/
 
 export const firebaseConfig = {
-    apiKey: "AIzaSyAAjsdBBz-cKodLpnraTApfJN2i92R4bBw",
-    authDomain: "etrans-95c74.firebaseapp.com",
-    databaseURL: "https://etrans-95c74.firebaseio.com",
-    projectId: "etrans-95c74",
-    storageBucket: "etrans-95c74.appspot.com",
-    messagingSenderId: "507909632345"
+    apiKey: "AIzaSyBZ_5K3u60uZNUBSNT_WscL1ivrtn8flj0",
+    authDomain: "fir-eurtruck.firebaseapp.com",
+    databaseURL: "https://fir-eurtruck.firebaseio.com",
+    projectId: "firebase-eurtruck",
+    storageBucket: "firebase-eurtruck.appspot.com",
+    messagingSenderId: "634619610615"
 };
 
 @NgModule({
@@ -69,6 +70,7 @@ export const firebaseConfig = {
     UserFilterPipe,
     StatusBar,
     SplashScreen,
+    GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
