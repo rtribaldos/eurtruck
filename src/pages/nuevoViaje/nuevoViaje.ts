@@ -12,7 +12,7 @@ export class NuevoViajePage {
  
     @ViewChild('signupSlider') signupSlider: any;
     viajes: FirebaseListObservable<any>;  
- 
+     
     slideOneForm: FormGroup;
     slideTwoForm: FormGroup;
  
@@ -38,6 +38,7 @@ export class NuevoViajePage {
             codigoLavado:['',]
       });
 
+      
     }
  
     next(){
@@ -68,4 +69,6 @@ export class NuevoViajePage {
  
   }
  
+  
+
 }
