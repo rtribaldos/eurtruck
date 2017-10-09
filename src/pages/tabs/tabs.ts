@@ -9,6 +9,7 @@ import { ChatsPage } from '../chats/chats';
 import { ProfilePage } from '../profile/profile';
 import { OfertasPage } from '../ofertas/ofertas';
 import { OfertadasPage } from '../ofertadas/ofertadas';
+import { PublicadasPage } from '../publicadas/publicadas';
 import { MyJobsPage } from '../myjobs/myjobs';
 
 
@@ -21,6 +22,7 @@ export class TabsPage {
   @ViewChild('NAV') nav: Nav;
   public rootPage: any;
   public pages: Array<{ titulo: string, component: any, icon: string }>;
+  public others: Array<{ titulo: string, component: any, icon: string }>
 
   constructor(
     platform:     Platform,
@@ -30,9 +32,12 @@ export class TabsPage {
 
     this.rootPage = OfertasPage;
     this.pages = [
-      { titulo: 'Ofertas disponibles',  component: OfertasPage,   icon: 'home'},
-      { titulo: 'Ofertas realizadas',  component: OfertadasPage, icon: 'home'},
-      { titulo: 'Perfil',  component: ProfilePage,   icon: 'person'}
+      { titulo: 'Disponibles',  component: OfertasPage,   icon: 'home'},
+      { titulo: 'Pujadas',  component: OfertadasPage, icon: 'home'},
+      { titulo: 'Publicadas',  component: PublicadasPage,   icon: 'home'}
+    ];
+    this.others = [
+      { titulo: 'Perfil',  component: ProfilePage,   icon: 'home'}
     ];
 
     platform.ready().then(() => {

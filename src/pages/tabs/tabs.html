@@ -3,10 +3,22 @@
     <ion-content>
       <img src="/assets/eurTruck.png">
       <ion-list>
-        <button color="dark" ion-item *ngFor="let page of pages" (click)="goToPage(page.component)" menuClose>
-          <ion-icon item-left name="{{ page.icon }}"></ion-icon>
-          {{ page.titulo }}
-        </button>
+        <ion-item  color="dark" text-wrap>
+           <ion-icon name="home"></ion-icon>
+           Ofertas
+            <ion-list>
+              <button color="dark" ion-item *ngFor="let page of pages" (click)="goToPage(page.component)" menuClose>
+                <ion-icon item-left name="{{ page.icon }}"></ion-icon>
+                {{ page.titulo }}
+              </button>
+            </ion-list>
+         </ion-item>
+         <ion-list>
+            <button color="dark" ion-item *ngFor="let page of others" (click)="goToPage(page.component)" menuClose>
+              <ion-icon name="{{ page.icon }}"></ion-icon>
+              {{ page.titulo }}
+            </button>
+          </ion-list>
       </ion-list>
     </ion-content>
   </ion-menu>

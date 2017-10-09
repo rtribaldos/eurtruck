@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        Ofertas Publicadas
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list *ngIf="(userProfile | async)?.validated">
+      <ion-item-sliding *ngFor='let viaje of viajes | async'>
+        <ion-item>
+           <h2>De {{ viaje.origen }} a  {{ viaje.destino }}</h2>
+           <p>Mercancía {{ viaje.carga }}  de {{ viaje.mercancia }} </p>
+        </ion-item>
+         <ion-item-options> 
+          <button ion-button color="danger" (click)="removeViaje(viaje)">
+            Borrar
+          </button>
+         </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    <ion-col class="col-center" *ngIf="!((userProfile | async)?.validated)">
+              Usuario aun no validado, espere a ser activado para poder visualizar y dar de alta viajes.
+          </ion-col>
+  </ion-content>
