@@ -12,8 +12,10 @@ export class OfertasPage {
 
   tasks: FirebaseListObservable<any>;
   viajes: FirebaseListObservable<any>;
+  ofertas: FirebaseListObservable<any>;
 
   userProfile: FirebaseObjectObservable<any>;
+  localUser:any;
 
   constructor(
     public navCtrl: NavController,
@@ -22,51 +24,26 @@ export class OfertasPage {
   ) {
     
     this.viajes = this.database.list('/viajes');
-    let localUser = JSON.parse(window.localStorage.getItem('user'));
-    this.userProfile = this.database.object('/users/'+localUser.uid);
+    this.ofertas = this.database.list('/ofertas');
+
+    this.localUser = JSON.parse(window.localStorage.getItem('user'));
+    this.userProfile = this.database.object('/users/'+this.localUser.uid);
+    
   }
   
   creaViaje(){
      this.navCtrl.push(NuevoViajePage);
   } 
  
-  createViaje(){
+  ofertar(viaje){
     let newTaskModal = this.alertCtrl.create({
       title: 'Oferta de transporte',
       inputs: [
          {
-          name: 'destino',
-          placeholder: 'Introduzca destino'
+          name: 'importe',
+          placeholder: 'Introduzca importe'
         },
         {
-          name: 'origen',
-          placeholder: 'Introduzca origen'
-        },
-         {
-          name: 'fechac',
-          placeholder: 'Fecha de carga'
-        },
-         {
-          name: 'fechad',
-          placeholder: 'Fecha de descarga'
-        },
-        {
-          name: 'mercancia',
-          placeholder: 'Mercancía'
-        },
-        {
-          name: 'especificaciones',
-          placeholder: 'Especificaciones Lavados'
-        },
-        {
-          name: 'codigoLavado',
-          placeholder: 'Código de Lavado'
-        },
-        {
-          name: 'prohibidos',
-          placeholder: 'Productos prohibidos'
-        },
-       {
           name: 'observaciones',
           placeholder: 'Observaciones'
         },
@@ -79,19 +56,12 @@ export class OfertasPage {
           }
         },
         {
-          text: 'Save',
+          text: 'Ofertar',
           handler: data => {
-            this.viajes.push({
-              destino: data.destino,
-              origen: data.origen,
-              fechac: data.fechac,
-              fechad: data.fechad,
-              mercancia: data.mercancia,
-              especificaciones: data.especificaciones,
-              codigoLavado: data.codigoLavado,
-              prohibidos: data.prohibidos,
-              observaciones: data.observaciones,
-              done: false
+            this.ofertas.push({
+              idViaje: viaje.$key,
+              importe: data.importe,
+              idUsuario:this.localUser.uid
             });
           }
         }
