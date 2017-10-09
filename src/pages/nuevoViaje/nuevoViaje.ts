@@ -15,10 +15,13 @@ export class NuevoViajePage {
     viajes: FirebaseListObservable<any>;  
     viajeNuevo: ITransporte;      
     myForm: FormGroup;
+    localUser: any; 
     
  
     constructor(public navCtrl: NavController, public builder: FormBuilder, 
         public database: AngularFireDatabase) {
+
+      this.localUser= JSON.parse(window.localStorage.getItem('user'));
       this.viajes = this.database.list('/viajes');
       this.myForm = builder.group({
         'origen': ['',],
@@ -34,7 +37,7 @@ export class NuevoViajePage {
     } 
 
     onSubmit(formData) {
-      console.log('Form data is '  + formData.value.origen);
+      console.log('User id '  +  this.localUser.uid);
       this.viajes.push({
         destino: formData.value.destino,
         origen: formData.value.origen,
@@ -45,6 +48,7 @@ export class NuevoViajePage {
         observaciones: formData.value.observaciones,
         especificaciones: formData.value.especificaciones,
         codigoLavado: formData.value.codigoLavado,
+        userId: this.localUser.uid,
         done: false
      });
      this.navCtrl.popTo(OfertasPage);
