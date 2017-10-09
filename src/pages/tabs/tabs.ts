@@ -32,12 +32,12 @@ export class TabsPage {
 
     this.rootPage = OfertasPage;
     this.pages = [
-      { titulo: 'Disponibles',  component: OfertasPage,   icon: 'home'},
-      { titulo: 'Pujadas',  component: OfertadasPage, icon: 'home'},
-      { titulo: 'Publicadas',  component: PublicadasPage,   icon: 'home'}
+      { titulo: 'Disponibles',  component: OfertasPage,   icon: 'paper'},
+      { titulo: 'Pujadas',  component: OfertadasPage, icon: 'send'},
+      { titulo: 'Publicadas',  component: PublicadasPage,   icon: 'megaphone'}
     ];
     this.others = [
-      { titulo: 'Perfil',  component: ProfilePage,   icon: 'home'}
+      { titulo: 'Perfil',  component: ProfilePage,   icon: 'contact'}
     ];
 
     platform.ready().then(() => {
