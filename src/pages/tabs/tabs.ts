@@ -8,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ChatsPage } from '../chats/chats';
 import { ProfilePage } from '../profile/profile';
 import { OfertasPage } from '../ofertas/ofertas';
+import { OfertadasPage } from '../ofertadas/ofertadas';
 import { MyJobsPage } from '../myjobs/myjobs';
 
 
@@ -29,10 +30,9 @@ export class TabsPage {
 
     this.rootPage = OfertasPage;
     this.pages = [
-      { titulo: 'Ofertas',  component: OfertasPage,   icon: 'home'},
+      { titulo: 'Ofertas disponibles',  component: OfertasPage,   icon: 'home'},
+      { titulo: 'Ofertas realizadas',  component: OfertadasPage, icon: 'home'},
       { titulo: 'Perfil',  component: ProfilePage,   icon: 'person'}
-      
-      
     ];
 
     platform.ready().then(() => {

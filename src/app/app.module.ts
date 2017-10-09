@@ -5,9 +5,9 @@ import { MyApp } from './app.component';
 import { ChatsPage } from '../pages/chats/chats';
 import { ProfilePage } from '../pages/profile/profile';
 import { OfertasPage } from '../pages/ofertas/ofertas';
+import { OfertadasPage } from '../pages/ofertadas/ofertadas';
 import { NuevoViajePage } from '../pages/nuevoViaje/nuevoViaje';
 import { TabsPage } from '../pages/tabs/tabs';
-import { MyJobsPage } from '../pages/myjobs/myjobs';
 import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/signup/signup';
 
@@ -40,8 +40,8 @@ export const firebaseConfig = {
     ChatsPage,
     ProfilePage,
     OfertasPage,
+    OfertadasPage,
     NuevoViajePage,
-    MyJobsPage,
     LoginPage,
     SignUpPage,
     TabsPage,
@@ -58,7 +58,7 @@ export const firebaseConfig = {
     ChatsPage,
     ProfilePage,
     OfertasPage,
-    MyJobsPage,
+    OfertadasPage,
     NuevoViajePage,
     LoginPage,
     SignUpPage,

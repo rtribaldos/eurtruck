@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Ofertas realizadas
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="(userProfile | async)?.validated">
+    <ion-item-sliding *ngFor='let oferta of ofertas | async'>
+      <ion-item>
+         <p>Oferta viaje {{ oferta.idViaje }}, importe ofertado
+            {{ oferta.importe }} </p>
+      </ion-item>
+      
+    </ion-item-sliding>
+  </ion-list>
+  <ion-col class="col-center" *ngIf="!((userProfile | async)?.validated)">
+      Usuario aun no validado, espere a ser activado para poder utilizar la aplicación.
+  </ion-col>
+</ion-content>
