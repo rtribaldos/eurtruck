@@ -7,6 +7,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { OfertasPage } from '../pages/ofertas/ofertas';
 import { OfertadasPage } from '../pages/ofertadas/ofertadas';
 import { PublicadasPage } from '../pages/publicadas/publicadas';
+import { AsignacionesPage } from '../pages/asignaciones/asignaciones';
 import { NuevoViajePage } from '../pages/nuevoViaje/nuevoViaje';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
@@ -43,6 +44,7 @@ export const firebaseConfig = {
     OfertasPage,
     OfertadasPage,
     PublicadasPage,
+    AsignacionesPage,
     NuevoViajePage,
     LoginPage,
     SignUpPage,
@@ -62,6 +64,7 @@ export const firebaseConfig = {
     OfertasPage,
     OfertadasPage,
     PublicadasPage,
+    AsignacionesPage,
     NuevoViajePage,
     LoginPage,
     SignUpPage,

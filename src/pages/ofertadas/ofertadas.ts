@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
-import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
+import { FirebaseListObservable, AngularFireDatabase, 
+  FirebaseObjectObservable  } from 'angularfire2/database';
 
 @Component({
   selector: 'page-ofertadas',

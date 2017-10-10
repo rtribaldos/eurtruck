@@ -10,6 +10,7 @@ import { ProfilePage } from '../profile/profile';
 import { OfertasPage } from '../ofertas/ofertas';
 import { OfertadasPage } from '../ofertadas/ofertadas';
 import { PublicadasPage } from '../publicadas/publicadas';
+import { AsignacionesPage } from '../asignaciones/asignaciones';
 import { MyJobsPage } from '../myjobs/myjobs';
 
 
@@ -34,7 +35,8 @@ export class TabsPage {
     this.pages = [
       { titulo: 'Disponibles',  component: OfertasPage,   icon: 'paper'},
       { titulo: 'Pujadas',  component: OfertadasPage, icon: 'send'},
-      { titulo: 'Publicadas',  component: PublicadasPage,   icon: 'megaphone'}
+      { titulo: 'Publicadas',  component: PublicadasPage,   icon: 'megaphone'},
+      { titulo: 'Asignadas',  component: AsignacionesPage,   icon: 'thumbs-up'}
     ];
     this.others = [
       { titulo: 'Perfil',  component: ProfilePage,   icon: 'contact'}
