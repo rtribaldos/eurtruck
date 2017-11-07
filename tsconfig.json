@@ -19,6 +19,9 @@
   "exclude": [
     "node_modules"
   ],
+  "files": [
+    "node_modules/angularfire2/node_modules/firebase/firebase.d.ts"
+  ],
   "compileOnSave": false,
   "atom": {
     "rewriteTsconfig": false
