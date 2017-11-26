@@ -1,4 +1,4 @@
-export interface ITransporte{
+class Transporte{
 
     idUsuario : string ;
     idTransporte : string ;

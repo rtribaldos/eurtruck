@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase  } from 'angularfire2/database';
 import { OfertasPage } from '../ofertas/ofertas';
-import { ITransporte } from '../../app/transporte';
  
 @Component({
   selector: 'page-nuevoViaje',
@@ -13,7 +12,6 @@ export class NuevoViajePage {
  
     @ViewChild('signupSlider') signupSlider: any;
     viajes: FirebaseListObservable<any>;  
-    viajeNuevo: ITransporte;      
     myForm: FormGroup;
     localUser: any; 
     

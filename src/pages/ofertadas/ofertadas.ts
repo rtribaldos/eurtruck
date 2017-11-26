@@ -3,6 +3,7 @@ import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase, 
   FirebaseObjectObservable  } from 'angularfire2/database';
 
+
 @Component({
   selector: 'page-ofertadas',
   templateUrl: 'ofertadas.html',
@@ -12,6 +13,9 @@ export class OfertadasPage {
   ofertas: FirebaseListObservable<any>;
   userProfile: FirebaseObjectObservable<any>;
   localUser:any;
+  puja: Puja;
+  transporte: Transporte;
+  
 
   constructor(
     public navCtrl: NavController,
@@ -27,8 +31,16 @@ export class OfertadasPage {
         orderByChild: 'idUsuario',
         equalTo: this.localUser.uid
       }
-    }
-  );
+    });
+
+    
+
+    this.ofertas.forEach(i=>i.forEach(itemPuja=>(
+      this.puja = new Puja(),
+      this.puja.importe=itemPuja.importe,
+      console.log(this.puja.importe)
+      
+    )));
   }
 
 
