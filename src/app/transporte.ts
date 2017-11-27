@@ -1,4 +1,4 @@
-class Transporte{
+export class Transporte{
 
     idUsuario : string ;
     idTransporte : string ;
