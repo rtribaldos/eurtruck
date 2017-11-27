@@ -11,10 +11,10 @@
 
 <ion-content>
   <ion-list *ngIf="(userProfile | async)?.validated">
-    <ion-item-sliding *ngFor='let oferta of ofertas | async'>
+    <ion-item-sliding *ngFor='let puja of pujas'>
       <ion-item>
-         <p>Oferta viaje {{ oferta.idViaje }}, importe ofertado
-            {{ oferta.importe }} </p>
+         <p>Oferta viaje a {{ puja.viaje.origen }}, importe ofertado {{ puja.importe }} 
+             </p>
       </ion-item>
       
     </ion-item-sliding>
