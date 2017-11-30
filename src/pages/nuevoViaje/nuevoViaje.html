@@ -13,40 +13,42 @@
 
    <ion-list inset>
         <form #myForm='ngForm' (ngSubmit)="onSubmit(myForm)">
-            <ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header"> 
                 <ion-label floating>Origen</ion-label>
                 <ion-input type="text" [(ngModel)]="origen" name="origen"></ion-input>
             </ion-item>
-            
-            <ion-item>
+            <ion-item class="item-accordion item-text-wrap" >
+                <div #map id="map"></div>
+            </ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label floating>Destino</ion-label>
                 <ion-textarea type="text" [(ngModel)]="destino" name="destino"></ion-textarea>
             </ion-item>
-            <ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header"> 
                 <ion-label floating>Mercancía</ion-label>
                 <ion-textarea type="text" [(ngModel)]="mercancia" name="mercancia"></ion-textarea>
             </ion-item>
-            <ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label floating>Carga</ion-label>
                 <ion-textarea type="text" [(ngModel)]="carga" name="carga"></ion-textarea>
             </ion-item>
-            <ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label floating>Fecha de Carga</ion-label>
                 <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="fechac" name="fechac"></ion-datetime>
             </ion-item>
-            <ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label floating>Fecha de descarga</ion-label>
                 <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="fechad" name="fechad"></ion-datetime>
             </ion-item>
-            <ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label floating>Especificaciones</ion-label>
                 <ion-textarea type="text" [(ngModel)]="especificaciones" name="especificaciones"></ion-textarea>
             </ion-item>
-            <ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label floating>Observaciones</ion-label>
                 <ion-textarea type="text" [(ngModel)]="observaciones" name="observaciones"></ion-textarea>
             </ion-item>
-            <ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label floating>Código de lavado</ion-label>
                 <ion-textarea type="text" [(ngModel)]="codigoLavado" name="codigoLavado"></ion-textarea>
             </ion-item>

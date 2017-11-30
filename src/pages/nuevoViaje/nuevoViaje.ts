@@ -1,16 +1,19 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase  } from 'angularfire2/database';
 import { OfertasPage } from '../ofertas/ofertas';
+
+declare var google;
  
 @Component({
   selector: 'page-nuevoViaje',
   templateUrl: 'nuevoViaje.html'
 })
 export class NuevoViajePage {
- 
-    @ViewChild('signupSlider') signupSlider: any;
+
+    @ViewChild('map') mapElement: ElementRef;
+    map: any;
     viajes: FirebaseListObservable<any>;  
     myForm: FormGroup;
     localUser: any; 
@@ -51,5 +54,24 @@ export class NuevoViajePage {
      });
      this.navCtrl.popTo(OfertasPage);
     }
+
+    ionViewDidLoad(){
+      this.loadMap();
+    }
+   
+    loadMap(){
+   
+      let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+   
+      let mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+   
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+   
+    }
+  
  
 }
