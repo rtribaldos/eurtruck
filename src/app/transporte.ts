@@ -1,5 +1,4 @@
 export class Transporte{
-
     idUsuario : string ;
     idTransporte : string ;
     origen  : string ;
@@ -11,4 +10,5 @@ export class Transporte{
     observaciones : string;
     especificaciones : string;
     codigoLavado : string;
+    idTransportista: string;
 }

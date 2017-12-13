@@ -1,7 +1,9 @@
 import { Transporte } from './transporte';
 
 export class Puja{
-  viaje : Transporte;
+  idTransporte : string;
   idUsuario : string;
   importe : number;
+  titulo: string;
+  fecha: Date;
 }

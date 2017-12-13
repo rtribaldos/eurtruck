@@ -25,6 +25,10 @@ import { AuthProvider } from '../providers/auth-provider';
 import { UserFilterPipe } from '../providers/userfilter';
 import { GooglePlus } from 'ionic-native';
 
+import { TransporteService } from '../services/transporte.services';
+import { UserService } from '../services/user.services';
+import { PujaService } from '../services/puja.services';
+
 /*YOU HAVE TO PUT YOUR APIKEY FROM YOUR FIREBASE COUNT*/
 
 export const firebaseConfig = {
@@ -77,6 +81,7 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     GooglePlus,
+    TransporteService, UserService, PujaService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -10,16 +10,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="(userProfile | async)?.validated">
-    <ion-item-sliding *ngFor='let puja of pujas'>
+  <ion-item-sliding *ngFor='let oferta of ofertas | async'>
       <ion-item>
-         <p>Oferta viaje a {{ puja.viaje.origen }}, importe ofertado {{ puja.importe }} 
+         <p>Oferta importe ofertado {{ oferta.importe }}
              </p>
       </ion-item>
-      
-    </ion-item-sliding>
-  </ion-list>
-  <ion-col class="col-center" *ngIf="!((userProfile | async)?.validated)">
-      Usuario aun no validado, espere a ser activado para poder utilizar la aplicación.
-  </ion-col>
+  </ion-item-sliding>
+
 </ion-content>
