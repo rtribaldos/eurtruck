@@ -23,8 +23,8 @@ export class PublicadasPage {
     public database: AngularFireDatabase
   ){
 
-    this.localUser = userService.getLocalUser;
-    this.userProfile = userService.getUserProfile;
+    this.localUser = userService.getLocalUser();  
+    this.userProfile = userService.getUserProfile();
     this.viajes = transporteService.getOfertasPublicadas(this.localUser.uid);
   }
 

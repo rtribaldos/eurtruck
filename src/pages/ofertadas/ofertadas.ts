@@ -26,8 +26,8 @@ export class OfertadasPage {
     public userService: UserService
   ){
 
-    this.localUser = userService.getLocalUser;
-    this.userProfile = userService.getUserProfile;
+    this.localUser = userService.getLocalUser();
+    this.userProfile = userService.getUserProfile();
     this.ofertas = pujaService.getOfertas(this.localUser.uid);
 
   }
