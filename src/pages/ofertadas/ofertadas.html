@@ -10,11 +10,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-item-sliding *ngFor='let oferta of ofertas | async'>
-      <ion-item>
-         <p>Oferta importe ofertado {{ oferta.importe }}
-             </p>
-      </ion-item>
-  </ion-item-sliding>
-
-</ion-content>
+    <ion-list>
+      <button ion-item *ngFor="let oferta of ofertas | async" (click)="goToDetail(oferta)">
+        {{ oferta.resumen }}
+        <br> Importe ofertado : {{ oferta.importe }}
+      </button>
+    </ion-list>
+  </ion-content>

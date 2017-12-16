@@ -5,8 +5,13 @@ import { FirebaseListObservable, AngularFireDatabase,
 @Injectable()
 export class PujaService{
 
+  ofertas: FirebaseListObservable<any>;
   constructor(public database: AngularFireDatabase) {
+    this.ofertas=this.database.list('/ofertas');
+  }
 
+  public getTotalOfertas(){
+    return this.ofertas;
   }
 
    public getOfertas(idUser){

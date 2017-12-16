@@ -4,6 +4,6 @@ export class Puja{
   idTransporte : string;
   idUsuario : string;
   importe : number;
-  titulo: string;
+  resumen: string;
   fecha: Date;
 }

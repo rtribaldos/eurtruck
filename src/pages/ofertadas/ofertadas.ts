@@ -7,6 +7,7 @@ import { Puja } from '../../app/puja';
 import { Transporte } from '../../app/transporte';
 import { UserService } from '../../services/user.services';
 import { PujaService } from '../../services/puja.services';
+import { DetallePage } from '../detalle/detalle';
 
 @Component({
   selector: 'page-ofertadas',
@@ -33,6 +34,10 @@ export class OfertadasPage {
 
 
   ionViewDidLoad() {
+  }
+
+  public goToDetail(puja){
+    this.navCtrl.push(DetallePage, {puja:puja});
   }
 
 

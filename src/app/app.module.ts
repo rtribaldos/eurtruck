@@ -12,6 +12,7 @@ import { NuevoViajePage } from '../pages/nuevoViaje/nuevoViaje';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/signup/signup';
+import { DetallePage } from '../pages/detalle/detalle';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -50,6 +51,7 @@ export const firebaseConfig = {
     PublicadasPage,
     AsignacionesPage,
     NuevoViajePage,
+    DetallePage,
     LoginPage,
     SignUpPage,
     TabsPage,
@@ -70,6 +72,7 @@ export const firebaseConfig = {
     PublicadasPage,
     AsignacionesPage,
     NuevoViajePage,
+    DetallePage,
     LoginPage,
     SignUpPage,
     TabsPage

@@ -4,6 +4,8 @@ import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable  
 import { NuevoViajePage } from '../nuevoViaje/nuevoViaje';
 import { UserService } from '../../services/user.services';
 import { TransporteService } from '../../services/transporte.services';
+import { PujaService } from '../../services/puja.services';
+
 
 @IonicPage()
 @Component({
@@ -22,13 +24,14 @@ export class OfertasPage {
     public navCtrl: NavController,
     public alertCtrl: AlertController,
     public transporteService: TransporteService,
+    public pujaService: PujaService,
     public userService: UserService
   ) {
 
     this.localUser = userService.getLocalUser();
     this.userProfile = userService.getUserProfile();
     this.viajes =  transporteService.getViajes();
-
+    this.ofertas = pujaService.getTotalOfertas();
   }
 
   creaViaje(){
@@ -58,10 +61,13 @@ export class OfertasPage {
         {
           text: 'Ofertar',
           handler: data => {
-            this.ofertas.push({
+
+              this.ofertas.push({
               idViaje: viaje.$key,
               importe: data.importe,
-              idUsuario:this.localUser.uid
+              idUsuario:this.localUser.uid,
+              fecha:new Date(),
+              resumen: 'De ' + viaje.origen + ' a ' + viaje.destino
             });
           }
         }
