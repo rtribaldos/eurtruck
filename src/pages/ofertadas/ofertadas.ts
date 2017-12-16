@@ -30,10 +30,13 @@ export class OfertadasPage {
     this.localUser = userService.getLocalUser();
     this.userProfile = userService.getUserProfile();
     let idViajeRec=navParams.get('idViaje');
+    console.log('idViaje: ' + idViajeRec);
+
     if(idViajeRec != null){
-      this.ofertas = pujaService.getOfertas(this.localUser.uid);
-    }else{
       this.ofertas = pujaService.getOfertasByViaje(idViajeRec);
+
+    }else{
+      this.ofertas = pujaService.getOfertas(this.localUser.uid);
     }
   }
 
