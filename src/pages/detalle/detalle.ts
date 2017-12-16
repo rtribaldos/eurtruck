@@ -19,17 +19,17 @@ import { TransporteService } from '../../services/transporte.services';
   templateUrl: 'detalle.html',
 })
 export class DetallePage {
-  puja:any;
+
   viaje= new Transporte();
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public transporteService: TransporteService) {
-    this.puja = navParams.get('puja');
-    transporteService.getViaje(this.puja.idViaje).subscribe(trans => {this.viaje=trans});
+
+    transporteService.getViaje(navParams.get('idViaje')).subscribe(trans => {this.viaje=trans});
   }
 
   ionViewDidLoad() {
 //    console.log(this.viaje.origen);
-      console.log('Carga ' + this.viaje.carga);
+  //    console.log('Carga ' + this.viaje.carga);
   }
 
 }

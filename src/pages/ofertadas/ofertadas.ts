@@ -26,8 +26,8 @@ export class OfertadasPage {
     public userService: UserService
   ){
 
-    this.localUser = userService.getLocalUser;
-    this.userProfile = userService.getUserProfile;
+    this.localUser = userService.getLocalUser();
+    this.userProfile = userService.getUserProfile();
     this.ofertas = pujaService.getOfertas(this.localUser.uid);
 
   }
@@ -37,7 +37,7 @@ export class OfertadasPage {
   }
 
   public goToDetail(puja){
-    this.navCtrl.push(DetallePage, {puja:puja});
+    this.navCtrl.push(DetallePage, {idViaje:puja.idViaje});
   }
 
 

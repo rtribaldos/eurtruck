@@ -16,8 +16,7 @@ export class UserService{
   }
 
    public getLocalUser(){
-     console.log("User Id: " + this.localUser.uid + " " +
-     this.userProfile);
+     console.log("* User Id: " + this.localUser.uid);
 
      return this.localUser;
    }

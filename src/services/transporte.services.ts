@@ -17,12 +17,9 @@ export class TransporteService{
    }
 
    public getViaje(id){
-    console.log('buscando viaje: ' + id);
+    //console.log('buscando viaje: ' + id);
     this.viaje= this.database.object('viajes/' + id);
-
-    this.viaje.subscribe(console.log);
-
-    //console.log('carga: ' + this.viaje.carga);
+  //  this.viaje.subscribe(console.log);
      return this.viaje;
   }
 
@@ -30,6 +27,16 @@ export class TransporteService{
      this.viajes.update( viaje.$key,{
        destino: viaje.destino,
        done: !viaje.done
+     });
+   }
+
+   public getOfertasPublicadas(id){
+     console.log('buscando ofertas para el user ' + id);
+     return this.database.list('/viajes',{
+       query:{
+         orderByChild: 'userId',
+         equalTo: id
+       }
      });
    }
 
