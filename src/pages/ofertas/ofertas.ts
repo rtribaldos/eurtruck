@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
 import { NuevoViajePage } from '../nuevoViaje/nuevoViaje';
+import { UserService } from '../../services/user.services';
+import { TransporteService } from '../../services/transporte.services';
+import { PujaService } from '../../services/puja.services';
+
 
 @IonicPage()
 @Component({
@@ -10,31 +14,30 @@ import { NuevoViajePage } from '../nuevoViaje/nuevoViaje';
 })
 export class OfertasPage {
 
-  tasks: FirebaseListObservable<any>;
   viajes: FirebaseListObservable<any>;
   ofertas: FirebaseListObservable<any>;
 
-  userProfile: FirebaseObjectObservable<any>;
+  userProfile: any;
   localUser:any;
 
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
-    public database: AngularFireDatabase
+    public transporteService: TransporteService,
+    public pujaService: PujaService,
+    public userService: UserService
   ) {
-    
-    this.viajes = this.database.list('/viajes');
-    this.ofertas = this.database.list('/ofertas');
 
-    this.localUser = JSON.parse(window.localStorage.getItem('user'));
-    this.userProfile = this.database.object('/users/'+this.localUser.uid);
-    
+    this.localUser = userService.getLocalUser();
+    this.userProfile = userService.getUserProfile();
+    this.viajes =  transporteService.getViajes();
+    this.ofertas = pujaService.getTotalOfertas();
   }
-  
+
   creaViaje(){
      this.navCtrl.push(NuevoViajePage);
-  } 
- 
+  }
+
   ofertar(viaje){
     let newTaskModal = this.alertCtrl.create({
       title: 'Oferta de transporte',
@@ -58,10 +61,13 @@ export class OfertasPage {
         {
           text: 'Ofertar',
           handler: data => {
-            this.ofertas.push({
+
+              this.ofertas.push({
               idViaje: viaje.$key,
               importe: data.importe,
-              idUsuario:this.localUser.uid
+              idUsuario:this.localUser.uid,
+              fecha:new Date(),
+              resumen: 'De ' + viaje.origen + ' a ' + viaje.destino
             });
           }
         }
@@ -70,14 +76,5 @@ export class OfertasPage {
     newTaskModal.present( newTaskModal );
   }
 
-  updateViaje( viaje){
-    this.viajes.update( viaje.$key,{
-      destino: viaje.destino,
-      done: !viaje.done
-    });
-  }
 
-  removeViaje( viaje ){
-    this.viajes.remove( viaje.$key );
-  }
 }

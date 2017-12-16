@@ -12,6 +12,7 @@ import { NuevoViajePage } from '../pages/nuevoViaje/nuevoViaje';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/signup/signup';
+import { DetallePage } from '../pages/detalle/detalle';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,6 +25,10 @@ import { AuthProvider } from '../providers/auth-provider';
 
 import { UserFilterPipe } from '../providers/userfilter';
 import { GooglePlus } from 'ionic-native';
+
+import { TransporteService } from '../services/transporte.services';
+import { UserService } from '../services/user.services';
+import { PujaService } from '../services/puja.services';
 
 /*YOU HAVE TO PUT YOUR APIKEY FROM YOUR FIREBASE COUNT*/
 
@@ -46,6 +51,7 @@ export const firebaseConfig = {
     PublicadasPage,
     AsignacionesPage,
     NuevoViajePage,
+    DetallePage,
     LoginPage,
     SignUpPage,
     TabsPage,
@@ -66,6 +72,7 @@ export const firebaseConfig = {
     PublicadasPage,
     AsignacionesPage,
     NuevoViajePage,
+    DetallePage,
     LoginPage,
     SignUpPage,
     TabsPage
@@ -77,6 +84,7 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     GooglePlus,
+    TransporteService, UserService, PujaService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
