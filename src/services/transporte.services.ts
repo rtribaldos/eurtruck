@@ -33,6 +33,15 @@ export class TransporteService{
      });
    }
 
+   public getOfertasPublicadas(id){
+     return this.database.list('/viajes',{
+       query:{
+         orderByChild: 'userId',
+         equalTo: id
+       }
+     });
+   }
+
    removeViaje( viaje ){
      this.viajes.remove( viaje.$key );
    }

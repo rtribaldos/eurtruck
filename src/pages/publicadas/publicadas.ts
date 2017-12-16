@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
 import { DetallePage } from '../detalle/detalle';
+import { UserService } from '../../services/user.services';
+import { TransporteService } from '../../services/transporte.services';
 
 @Component({
   selector: 'page-publicadas',
@@ -10,25 +12,20 @@ import { DetallePage } from '../detalle/detalle';
 export class PublicadasPage {
 
   viajes: FirebaseListObservable<any>;
-  userProfile: FirebaseObjectObservable<any>;
+  userProfile:any;
   localUser:any;
 
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
+    public userService: UserService,
+    public transporteService: TransporteService,
     public database: AngularFireDatabase
   ){
 
-    this.localUser = JSON.parse(window.localStorage.getItem('user'));
-    this.userProfile = this.database.object('/users/'+this.localUser.uid);
-
-    this.viajes = this.database.list('/viajes',{
-      query:{
-        orderByChild: 'userId',
-        equalTo: this.localUser.uid
-      }
-    }
-  );
+    this.localUser = userService.getLocalUser;
+    this.userProfile = userService.getUserProfile;
+    this.viajes = transporteService.getOfertasPublicadas(this.localUser.uid);
   }
 
 
