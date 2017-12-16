@@ -37,7 +37,7 @@ export class OfertadasPage {
   }
 
   public goToDetail(puja){
-    this.navCtrl.push(DetallePage, {puja:puja});
+    this.navCtrl.push(DetallePage, {idViaje:puja.idViaje});
   }
 
 

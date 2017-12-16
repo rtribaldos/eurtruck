@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
+import { DetallePage } from '../detalle/detalle';
 
 @Component({
   selector: 'page-publicadas',
@@ -17,7 +18,7 @@ export class PublicadasPage {
     public alertCtrl: AlertController,
     public database: AngularFireDatabase
   ){
-    
+
     this.localUser = JSON.parse(window.localStorage.getItem('user'));
     this.userProfile = this.database.object('/users/'+this.localUser.uid);
 
@@ -31,8 +32,8 @@ export class PublicadasPage {
   }
 
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OfertadasPage');
+  public goToDetail(viaje){
+    this.navCtrl.push(DetallePage, {idViaje:viaje.$key});
   }
 
 }
