@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase,
   FirebaseObjectObservable  } from 'angularfire2/database';
 import { List } from 'ionic-angular/components/list/list';
@@ -22,14 +22,19 @@ export class OfertadasPage {
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
+    public navParams: NavParams,
     public pujaService: PujaService,
     public userService: UserService
   ){
 
     this.localUser = userService.getLocalUser();
     this.userProfile = userService.getUserProfile();
-    this.ofertas = pujaService.getOfertas(this.localUser.uid);
-
+    let idViajeRec=navParams.get('idViaje');
+    if(idViajeRec != null){
+      this.ofertas = pujaService.getOfertas(this.localUser.uid);
+    }else{
+      this.ofertas = pujaService.getOfertasByViaje(idViajeRec);
+    }
   }
 
 

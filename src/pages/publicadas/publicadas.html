@@ -14,6 +14,7 @@
         <button ion-item *ngFor='let viaje of viajes | async' (click)="goToDetail(viaje)">
            <h2>De {{ viaje.origen }} a  {{ viaje.destino }}</h2>
           <br> Mercancía {{ viaje.carga }}  de {{ viaje.mercancia }}
+          <button ion-button clear item-right (click)="goToOfertas(viaje)">Pujas</button>
         </button>
       </ion-list>
     </ion-content>
