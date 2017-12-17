@@ -67,7 +67,7 @@ export class OfertasPage {
               importe: data.importe,
               idUsuario:this.localUser.uid,
               fecha:new Date(),
-              resumen: 'De ' + viaje.origen + ' a ' + viaje.destino
+              resumen: 'De ' + viaje.origen.formatted_address + ' a ' + viaje.destino.formatted_address
             });
           }
         }
