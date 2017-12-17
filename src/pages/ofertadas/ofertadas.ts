@@ -15,13 +15,11 @@ import { DetallePage } from '../detalle/detalle';
   templateUrl: 'ofertadas.html',
 })
 export class OfertadasPage {
-
   ofertas: FirebaseListObservable<any>;
   userProfile:any;
   localUser:any;
   idViajeRec : any;
   sonOfertasDeMisViajes = false;
-  transporte = new Transporte();
   transporteService : TransporteService;
 
   constructor(
@@ -86,11 +84,9 @@ export class OfertadasPage {
       },{
         text: 'Asignar',
         handler: () => {
-   //      this.navCtrl.push(OfertadasPage, {idViaje:viaje.$key});
-          this.asignar(puja);
+            this.asignar(puja);
         }
-
-      },{
+     },{
         text: 'Cancelar',
         handler: () => {
           console.log('Cancelado');
@@ -115,20 +111,13 @@ asignar(puja){
       },
       {
         text: 'Aceptar',
-        handler: data => {
-        //this.transporte = this.transporteService.getViaje(puja.idViaje);
-        console.log('asignando el viaje ' + puja.idViaje);
-
-          this.transporteService.asignaViaje(puja.idViaje, puja.idUsuario);
-          console.log('asignada la carga ' + puja.idViaje);
-
+         handler: data => {
+           this.transporteService.asignaViaje(puja.idViaje, puja.idUsuario);
         }
       }
     ]
   });
   newTaskModal.present( newTaskModal );
 }
-
-
 
 }
