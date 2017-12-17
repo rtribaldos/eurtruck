@@ -56,9 +56,16 @@ export class NuevoViajePage {
 
     onSubmit(formData) {
       console.log('User id '  +  this.localUser.uid);
+      var destinoVar = this.autocompleteDestino.getPlace().geometry.location.toJSON()
+      destinoVar.formatted_address = this.autocompleteDestino.getPlace().formatted_address;
+      destinoVar.name = this.autocompleteDestino.getPlace().name;
+      var origenVar = this.autocompleteOrigen.getPlace().geometry.location.toJSON()
+      origenVar.formatted_address = this.autocompleteOrigen.getPlace().formatted_address;
+      origenVar.name = this.autocompleteOrigen.getPlace().name;
       this.viajes.push({
-        destino: this.autocompleteDestino.getPlace(),
-        origen: this.autocompleteOrigen.getPlace(),
+        destino: destinoVar,
+        origen: origenVar,
+        distancia: Math.round(google.maps.geometry.spherical.computeDistanceBetween(this.autocompleteOrigen.getPlace().geometry.location, this.autocompleteDestino.getPlace().geometry.location) / 1000),
         carga: formData.value.carga,
         fechac: formData.value.fechac,
         fechad: formData.value.fechad,

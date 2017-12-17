@@ -16,11 +16,35 @@
 <ion-content>
 
     <ion-list *ngFor='let viaje of viajes | async'>
-      <ion-item>
-         <h2>De {{ viaje.origen }} a  {{ viaje.destino }}</h2>
+        <ion-card>    
+            <img src="https://maps.googleapis.com/maps/api/staticmap?size=600x300&path=color:0x0000ff|weight:5|{{ viaje.origen.lat }},{{ viaje.origen.lng }}|{{ viaje.destino.lat }},{{ viaje.destino.lng }}">        
+              <ion-item>
+                <ion-icon name="arrow-dropright-circle" item-start large></ion-icon>
+                <h2>{{ viaje.origen.name }}</h2>
+                <p>{{ viaje.origen.formatted_address }}</p>
+              </ion-item>
+            
+              <ion-item>
+                <ion-icon name="arrow-dropleft-circle" item-left large ></ion-icon>
+                <h2>{{ viaje.destino.name }}</h2>
+                <p>{{ viaje.destino.formatted_address }}</p>
+              </ion-item>
+            
+              <ion-item>
+                <span item-left>> {{viaje.distancia}} Kms</span>
+                <span item-left></span>
+                <button ion-button icon-left clear item-end (click)="ofertar(viaje)">
+                  <ion-icon name="trending-up"></ion-icon>
+                  Hacer oferta
+                </button>
+              </ion-item>
+            
+      </ion-card>
+      <!--<ion-item>
+         <h2>De {{ viaje.origen.name }} a  {{ viaje.destino.name }}</h2>
          <p>Mercancía {{ viaje.carga }}  de {{ viaje.mercancia }} </p>
       <button ion-button clear item-right (click)="ofertar(viaje)">Hacer oferta</button>
-      </ion-item>
+      </ion-item> -->
        
     </ion-list>
 
