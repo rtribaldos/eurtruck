@@ -1,5 +1,5 @@
 export class Transporte{
-    idUsuario : string ;
+    userId : string ;
     idTransporte : string ;
     origen  : string ;
     destino  : string  ;
