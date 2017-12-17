@@ -9,6 +9,7 @@ import { UserService } from '../../services/user.services';
 import { PujaService } from '../../services/puja.services';
 import { TransporteService } from '../../services/transporte.services';
 import { DetallePage } from '../detalle/detalle';
+import { ProfilePage } from '../profile/profile';
 
 @Component({
   selector: 'page-ofertadas',
@@ -61,6 +62,11 @@ export class OfertadasPage {
            this.navCtrl.push(DetallePage, {idViaje:puja.idViaje});
          }
        },{
+          text: 'Perfil del transportista',
+          handler: () => {
+            this.navCtrl.push(ProfilePage, {idUsuario:puja.idUsuario});
+          }
+        },{
          text: 'Cancelar',
          handler: () => {
            console.log('Cancelado');
@@ -87,6 +93,12 @@ export class OfertadasPage {
             this.asignar(puja);
         }
      },{
+        text: 'Perfil del transportista',
+        handler: () => {
+          this.navCtrl.push(ProfilePage, {idUsuario:puja.idUsuario});
+        }
+      },
+     {
         text: 'Cancelar',
         handler: () => {
           console.log('Cancelado');

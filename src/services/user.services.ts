@@ -5,20 +5,19 @@ import { FirebaseListObservable, AngularFireDatabase,
 @Injectable()
 export class UserService{
 
-
   userProfile: FirebaseObjectObservable<any>;
   localUser:any;
 
   constructor(public database: AngularFireDatabase) {
     this.localUser = JSON.parse(window.localStorage.getItem('user'));
-
-    this.userProfile = this.database.object('/users/'+this.localUser.uid);
+    this.userProfile = this.getUserProfileById(this.localUser.uid);
   }
 
+   public getUserProfileById(id){
+     return this.database.object('/users/'+id);
+   }
    public getLocalUser(){
-     console.log("* User Id: " + this.localUser.uid);
-
-     return this.localUser;
+       return this.localUser;
    }
 
    public getUserProfile(){

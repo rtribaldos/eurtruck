@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, App } from 'ionic-angular';
+import { NavController, App, NavParams  } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { ChatsPage } from '../chats/chats';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import { FirebaseObjectObservable, AngularFireDatabase  } from 'angularfire2/database';
+import { UserService } from '../../services/user.services';
 
 
 @Component({
@@ -12,13 +13,20 @@ import { FirebaseObjectObservable, AngularFireDatabase  } from 'angularfire2/dat
 })
 export class ProfilePage {
 
-  userProfile: FirebaseObjectObservable<any>;
 
-  constructor(public navCtrl: NavController, public database: AngularFireDatabase, private app: App) {
-    let localUser = JSON.parse(window.localStorage.getItem('user'));
-    this.userProfile = this.database.object('/users/'+localUser.uid);
-    this.userProfile.update({ email: localUser.email });
-    this.userProfile.update({ picture: localUser.picture });
+  userProfile: any;
+  soloLectura = false;
+
+  constructor(public navCtrl: NavController,  public navParams: NavParams,   public userService: UserService, private app: App) {
+
+    let idUser = navParams.get('idUsuario');
+    if(idUser != null){
+      this.userProfile = userService.getUserProfileById(idUser);
+      this.soloLectura = true;
+    }else{
+      this.userProfile = userService.getUserProfile();
+    }
+
   }
 
   logout(){
@@ -32,6 +40,6 @@ export class ProfilePage {
 
   adminPage(){
      this.navCtrl.push(ChatsPage);
-  } 
+  }
 
 }
