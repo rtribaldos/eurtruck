@@ -7,6 +7,7 @@ import { Puja } from '../../app/puja';
 import { Transporte } from '../../app/transporte';
 import { UserService } from '../../services/user.services';
 import { PujaService } from '../../services/puja.services';
+import { TransporteService } from '../../services/transporte.services';
 import { DetallePage } from '../detalle/detalle';
 
 @Component({
@@ -20,6 +21,8 @@ export class OfertadasPage {
   localUser:any;
   idViajeRec : any;
   sonOfertasDeMisViajes = false;
+  transporte = new Transporte();
+  transporteService : TransporteService;
 
   constructor(
     public navCtrl: NavController,
@@ -27,12 +30,15 @@ export class OfertadasPage {
     public navParams: NavParams,
     public pujaService: PujaService,
     public userService: UserService,
+    public transService : TransporteService,
     public actionSheetCtrl: ActionSheetController
   ){
 
+    this.transporteService = transService;
     this.localUser = userService.getLocalUser();
     this.userProfile = userService.getUserProfile();
     this.idViajeRec=navParams.get('idViaje');
+
     console.log('idViaje: ' + this.idViajeRec);
 
     if(this.idViajeRec != null){
@@ -110,7 +116,11 @@ asignar(puja){
       {
         text: 'Aceptar',
         handler: data => {
-          console.log('asignada');
+        //this.transporte = this.transporteService.getViaje(puja.idViaje);
+        console.log('asignando el viaje ' + puja.idViaje);
+
+          this.transporteService.asignaViaje(puja.idViaje, puja.idUsuario);
+          console.log('asignada la carga ' + puja.idViaje);
 
         }
       }

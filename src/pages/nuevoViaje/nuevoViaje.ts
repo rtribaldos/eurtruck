@@ -3,20 +3,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase  } from 'angularfire2/database';
 import { OfertasPage } from '../ofertas/ofertas';
- 
+
 @Component({
   selector: 'page-nuevoViaje',
   templateUrl: 'nuevoViaje.html'
 })
 export class NuevoViajePage {
- 
+
     @ViewChild('signupSlider') signupSlider: any;
-    viajes: FirebaseListObservable<any>;  
+    viajes: FirebaseListObservable<any>;
     myForm: FormGroup;
-    localUser: any; 
-    
- 
-    constructor(public navCtrl: NavController, public builder: FormBuilder, 
+    localUser: any;
+
+
+    constructor(public navCtrl: NavController, public builder: FormBuilder,
         public database: AngularFireDatabase) {
 
       this.localUser= JSON.parse(window.localStorage.getItem('user'));
@@ -30,9 +30,10 @@ export class NuevoViajePage {
         'mercancia':['',],
         'observaciones':['',],
         'especificaciones':['',],
-        'codigoLavado':['',]
+        'codigoLavado':['',],
+        'idTransportista':['',]
       })
-    } 
+    }
 
     onSubmit(formData) {
       console.log('User id '  +  this.localUser.uid);
@@ -46,10 +47,11 @@ export class NuevoViajePage {
         observaciones: formData.value.observaciones,
         especificaciones: formData.value.especificaciones,
         codigoLavado: formData.value.codigoLavado,
+        idTransportista:'',
         userId: this.localUser.uid,
         done: false
      });
      this.navCtrl.popTo(OfertasPage);
     }
- 
+
 }

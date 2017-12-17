@@ -23,10 +23,17 @@ export class TransporteService{
      return this.viaje;
   }
 
-   updateViaje( viaje){
+   updateViaje(viaje){
      this.viajes.update( viaje.$key,{
        destino: viaje.destino,
        done: !viaje.done
+     });
+   }
+
+   asignaViaje(idViaje, idUsuario){
+     console.log('actualizando el viaje ' +idViaje + ', transportista ' + idUsuario);
+     this.viajes.update(idViaje,{
+       idTransportista: idUsuario
      });
    }
 
@@ -39,6 +46,17 @@ export class TransporteService{
        }
      });
    }
+
+   public getOfertasAsignadas(id){
+     console.log('buscando ofertas asignadas para el user ' + id);
+     return this.database.list('/viajes',{
+       query:{
+         orderByChild: 'idTransportista',
+         equalTo: id
+       }
+     });
+   }
+
 
    removeViaje( viaje ){
      this.viajes.remove( viaje.$key );
