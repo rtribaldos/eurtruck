@@ -20,16 +20,23 @@
       </ion-fab>
 
     <ion-list *ngFor='let viaje of viajes | async'>
-        <ion-card>    
-            <img src="https://maps.googleapis.com/maps/api/staticmap?size=600x300&path=color:0x0000ff|weight:5|{{ viaje.origen.lat }},{{ viaje.origen.lng }}|{{ viaje.destino.lat }},{{ viaje.destino.lng }}">        
-              <ion-item>
-                <ion-icon name="arrow-dropright-circle" item-start large></ion-icon>
+        <ion-card class="adv-map">
+          <div style="position: relative">
+            <img src="https://maps.googleapis.com/maps/api/staticmap?size=600x300&path=color:0x0000ff|weight:5|{{ viaje.origen.lat }},{{ viaje.origen.lng }}|{{ viaje.destino.lat }},{{ viaje.destino.lng }}&key=AIzaSyDAwA6ASuWzPzvoSHZDSWdBwKkjwEN9Pp0">        
+            <ion-fab right top>
+              <button ion-fab class="fab-map">
+                <ion-icon name="search"></ion-icon>
+              </button>
+            </ion-fab>  
+          </div>
+            <ion-item>
+                <ion-icon color="subtle" name="arrow-dropright-circle" item-start large></ion-icon>
                 <h2>{{ viaje.origen.name }}</h2>
                 <p>{{ viaje.origen.formatted_address }}</p>
               </ion-item>
             
               <ion-item>
-                <ion-icon name="arrow-dropleft-circle" item-left large ></ion-icon>
+                <ion-icon color="subtle" large item-start name="arrow-dropleft-circle"></ion-icon>
                 <h2>{{ viaje.destino.name }}</h2>
                 <p>{{ viaje.destino.formatted_address }}</p>
               </ion-item>
@@ -44,12 +51,5 @@
               </ion-item>
             
       </ion-card>
-      <!--<ion-item>
-         <h2>De {{ viaje.origen.name }} a  {{ viaje.destino.name }}</h2>
-         <p>Mercancía {{ viaje.carga }}  de {{ viaje.mercancia }} </p>
-      <button ion-button clear item-right (click)="ofertar(viaje)">Hacer oferta</button>
-      </ion-item> -->
-       
     </ion-list>
-
 </ion-content>
