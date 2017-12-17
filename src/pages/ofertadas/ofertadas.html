@@ -11,9 +11,25 @@
 
 <ion-content>
     <ion-list>
-      <button ion-item *ngFor="let oferta of ofertas | async" (click)="goToDetail(oferta)">
-        {{ oferta.resumen }}
-        <br> Importe ofertado : {{ oferta.importe }}
-      </button>
+      <ion-item ion-item *ngFor="let oferta of ofertas | async">
+
+
+        <div *ngIf="sonOfertasDeMisViajes; else divPujadas">
+          <p (click)="presentActionSheetOfertas(oferta)">
+              {{ oferta.resumen }}
+                <br>  Importe ofertado {{ oferta.importe }}
+          </p>
+        </div>
+
+        <ng-template #divPujadas>
+          <p (click)="presentActionSheetDetalle(oferta)">
+              {{ oferta.resumen }}
+                <br>  Importe ofertado {{ oferta.importe }}
+          </p>
+        </ng-template>
+
+
+
+      </ion-item>
     </ion-list>
   </ion-content>

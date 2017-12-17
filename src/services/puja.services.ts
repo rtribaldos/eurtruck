@@ -23,6 +23,15 @@ export class PujaService{
      });
   }
 
+  public getOfertasByViaje(idViaje){
+   return this.database.list('/ofertas',{
+      query:{
+        orderByChild: 'idViaje',
+        equalTo: idViaje
+      }
+    });
+ }
+
 
 
  }
