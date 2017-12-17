@@ -13,22 +13,27 @@
     <ion-list>
       <ion-item ion-item *ngFor="let oferta of ofertas | async">
 
-
         <div *ngIf="sonOfertasDeMisViajes; else divPujadas">
-          <p (click)="presentActionSheetOfertas(oferta)">
+          <ion-card (click)="presentActionSheetOfertas(oferta)">
+            <ion-card-header>
               {{ oferta.resumen }}
-                <br>  Importe ofertado {{ oferta.importe }}
-          </p>
+            </ion-card-header>
+            <ion-card-content>
+              Importe ofertado {{ oferta.importe }}
+            </ion-card-content>
+          </ion-card>
         </div>
 
         <ng-template #divPujadas>
-          <p (click)="presentActionSheetDetalle(oferta)">
+          <ion-card (click)="presentActionSheetDetalle(oferta)">
+            <ion-card-header>
               {{ oferta.resumen }}
-                <br>  Importe ofertado {{ oferta.importe }}
-          </p>
+            </ion-card-header>
+            <ion-card-content>
+              Importe ofertado {{ oferta.importe }}
+            </ion-card-content>
+          </ion-card>
         </ng-template>
-
-
 
       </ion-item>
     </ion-list>
