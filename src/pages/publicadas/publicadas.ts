@@ -31,15 +31,6 @@ export class PublicadasPage {
 
   }
 
-
-  public goToDetail(viaje){
-    this.navCtrl.push(DetallePage, {idViaje:viaje.$key});
-  }
-
-  public goToOfertas(viaje){
-    this.navCtrl.push(OfertadasPage, {idViaje:viaje.$key});
-  }
-
   presentActionSheet(viaje) {
    let actionSheet = this.actionSheetCtrl.create({
      title: 'Acciones',
@@ -47,12 +38,12 @@ export class PublicadasPage {
        {
          text: 'Detalle',
          handler: () => {
-           this.goToDetail(viaje);
+           this.navCtrl.push(DetallePage, {idViaje:viaje.$key});
          }
        },{
          text: 'Pujas',
          handler: () => {
-           this.goToOfertas(viaje);
+          this.navCtrl.push(OfertadasPage, {idViaje:viaje.$key});
          }
        },{
          text: 'Cancelar',
@@ -64,7 +55,6 @@ export class PublicadasPage {
    });
 
     actionSheet.present();
-
  }
 
 }
