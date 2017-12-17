@@ -9,7 +9,11 @@ export class TransporteService{
   viaje: any;
 
   constructor(public database: AngularFireDatabase) {
-    this.viajes=this.database.list('/viajes');
+    this.viajes=this.database.list('/viajes',{
+       query:{
+         orderByChild: 'idTransportista',
+         equalTo: ''
+       }});
   }
 
    public getViajes(){
