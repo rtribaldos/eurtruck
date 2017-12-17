@@ -4,10 +4,11 @@
         <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Perfil
+      Ofertas
     </ion-title>
   </ion-navbar>
 </ion-header>
+
 
 <ion-content>
 
@@ -18,10 +19,7 @@
     </ion-fab-list>
   </ion-fab>
 
-
-<ion-content>
-
-    <ion-list *ngFor='let viaje of viajes | async'>
+  <ion-list *ngFor='let viaje of viajes | async'>
       <ion-item>
          <h2>De {{ viaje.origen }} a  {{ viaje.destino }}</h2>
          <p>Mercancía {{ viaje.carga }}  de {{ viaje.mercancia }} </p>
