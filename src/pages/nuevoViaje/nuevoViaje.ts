@@ -4,17 +4,13 @@ import { NavController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase  } from 'angularfire2/database';
 import { OfertasPage } from '../ofertas/ofertas';
 
-<<<<<<< HEAD
 declare var google;
  
-=======
->>>>>>> origin/triby
 @Component({
   selector: 'page-nuevoViaje',
   templateUrl: 'nuevoViaje.html'
 })
 export class NuevoViajePage {
-<<<<<<< HEAD
   
     @ViewChild('map') mapElement: ElementRef;
     map: any;
@@ -41,16 +37,6 @@ export class NuevoViajePage {
     
  
     constructor(public navCtrl: NavController, public builder: FormBuilder, 
-=======
-
-    @ViewChild('signupSlider') signupSlider: any;
-    viajes: FirebaseListObservable<any>;
-    myForm: FormGroup;
-    localUser: any;
-
-
-    constructor(public navCtrl: NavController, public builder: FormBuilder,
->>>>>>> origin/triby
         public database: AngularFireDatabase) {
 
       this.localUser= JSON.parse(window.localStorage.getItem('user'));
