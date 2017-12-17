@@ -15,17 +15,13 @@
 
 <ion-content>
 
-    <ion-item-sliding *ngFor='let viaje of viajes | async'>
+    <ion-list *ngFor='let viaje of viajes | async'>
       <ion-item>
          <h2>De {{ viaje.origen }} a  {{ viaje.destino }}</h2>
          <p>Mercancía {{ viaje.carga }}  de {{ viaje.mercancia }} </p>
       <button ion-button clear item-right (click)="ofertar(viaje)">Hacer oferta</button>
       </ion-item>
-       <ion-item-options>
-        <button ion-button color="danger" (click)="removeViaje(viaje)">
-          Borrar
-        </button>
-       </ion-item-options>
-    </ion-item-sliding>
+       
+    </ion-list>
 
 </ion-content>

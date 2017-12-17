@@ -57,8 +57,8 @@ export class NuevoViajePage {
     onSubmit(formData) {
       console.log('User id '  +  this.localUser.uid);
       this.viajes.push({
-        destino: formData.value.destino,
-        origen: formData.value.origen,
+        destino: this.autocompleteDestino.getPlace(),
+        origen: this.autocompleteOrigen.getPlace(),
         carga: formData.value.carga,
         fechac: formData.value.fechac,
         fechad: formData.value.fechad,
