@@ -50,8 +50,7 @@ export class NuevoViajePage {
         'mercancia':['',],
         'observaciones':['',],
         'especificaciones':['',],
-        'codigoLavado':['',],
-        'idTransportista':['',]
+        'codigoLavado':['',]
       })
     }
 
