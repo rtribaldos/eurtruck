@@ -30,6 +30,8 @@ import { TransporteService } from '../services/transporte.services';
 import { UserService } from '../services/user.services';
 import { PujaService } from '../services/puja.services';
 
+import { EmailComposer } from '@ionic-native/email-composer';
+
 /*YOU HAVE TO PUT YOUR APIKEY FROM YOUR FIREBASE COUNT*/
 
 export const firebaseConfig = {
@@ -84,6 +86,7 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     GooglePlus,
+    EmailComposer,
     TransporteService, UserService, PujaService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

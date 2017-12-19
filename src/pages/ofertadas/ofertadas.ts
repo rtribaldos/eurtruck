@@ -8,8 +8,12 @@ import { Transporte } from '../../app/transporte';
 import { UserService } from '../../services/user.services';
 import { PujaService } from '../../services/puja.services';
 import { TransporteService } from '../../services/transporte.services';
+import { EmailService } from '../../services/email.services';
+
 import { DetallePage } from '../detalle/detalle';
 import { ProfilePage } from '../profile/profile';
+import { EmailComposer } from '@ionic-native/email-composer';
+
 
 @Component({
   selector: 'page-ofertadas',
@@ -30,6 +34,7 @@ export class OfertadasPage {
     public pujaService: PujaService,
     public userService: UserService,
     public transService : TransporteService,
+    public emailComposer: EmailComposer,
     public actionSheetCtrl: ActionSheetController
   ){
 
@@ -125,11 +130,29 @@ asignar(puja){
         text: 'Aceptar',
          handler: data => {
            this.transporteService.asignaViaje(puja.idViaje, puja.idUsuario);
+           this.sendEmail();
         }
       }
     ]
   });
   newTaskModal.present( newTaskModal );
+}
+
+
+
+sendEmail() {
+let email = {
+  to: 'raultribaldos@gmail.com',
+  cc: 'eb.jose@gmail.com',
+  attachments: [
+    //atach
+  ],
+  subject: 'Asignacion EurTruck',
+  body: 'Tienes una nueva asignacion',
+  isHtml: true
+};
+
+this.emailComposer.open(email);
 }
 
 }
