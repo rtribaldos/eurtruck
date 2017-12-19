@@ -22,34 +22,34 @@
     <ion-list *ngFor='let viaje of viajes | async'>
         <ion-card class="adv-map">
           <div style="position: relative">
-            <img src="https://maps.googleapis.com/maps/api/staticmap?size=600x300&path=color:0x0000ff|weight:5|{{ viaje.origen.lat }},{{ viaje.origen.lng }}|{{ viaje.destino.lat }},{{ viaje.destino.lng }}&key=AIzaSyDAwA6ASuWzPzvoSHZDSWdBwKkjwEN9Pp0">        
+            <img src="https://maps.googleapis.com/maps/api/staticmap?size=600x300&path=color:0x0000ff|weight:5|{{ viaje.origen.lat }},{{ viaje.origen.lng }}|{{ viaje.destino.lat }},{{ viaje.destino.lng }}&key=AIzaSyDAwA6ASuWzPzvoSHZDSWdBwKkjwEN9Pp0">
             <ion-fab right top>
               <button ion-fab class="fab-map">
                 <ion-icon name="search"></ion-icon>
               </button>
-            </ion-fab>  
+            </ion-fab>
           </div>
             <ion-item>
                 <ion-icon color="subtle" name="arrow-dropright-circle" item-start large></ion-icon>
                 <h2>{{ viaje.origen.name }}</h2>
                 <p>{{ viaje.origen.formatted_address }}</p>
               </ion-item>
-            
+
               <ion-item>
                 <ion-icon color="subtle" large item-start name="arrow-dropleft-circle"></ion-icon>
                 <h2>{{ viaje.destino.name }}</h2>
                 <p>{{ viaje.destino.formatted_address }}</p>
               </ion-item>
-            
+
               <ion-item>
                 <span item-left>> {{viaje.distancia}} Kms</span>
                 <span item-left></span>
-                <button ion-button icon-left clear item-end (click)="ofertar(viaje)">
+                <button ion-button icon-left clear item-end (click)="ofertar(viaje)"> 
                   <ion-icon name="trending-up"></ion-icon>
                   Hacer oferta
                 </button>
               </ion-item>
-            
+
       </ion-card>
     </ion-list>
 </ion-content>
