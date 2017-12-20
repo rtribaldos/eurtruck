@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
 import { NuevoViajePage } from '../nuevoViaje/nuevoViaje';
+import { DetallePage } from '../detalle/detalle';
 import { UserService } from '../../services/user.services';
 import { TransporteService } from '../../services/transporte.services';
 import { PujaService } from '../../services/puja.services';
@@ -36,6 +37,10 @@ export class OfertasPage {
 
   creaViaje(){
      this.navCtrl.push(NuevoViajePage);
+  }
+
+  viewDetails(idViaje) {
+    this.navCtrl.push(DetallePage, {idViaje:idViaje});
   }
 
   ofertar(viaje){

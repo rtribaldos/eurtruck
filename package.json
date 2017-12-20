@@ -10,7 +10,6 @@
         "ionic:serve": "ionic-app-scripts serve"
     },
     "dependencies": {
-        "@angular/cli": "^1.6.1",
         "@angular/common": "4.0.0",
         "@angular/compiler": "4.0.0",
         "@angular/compiler-cli": "4.0.0",
@@ -20,10 +19,8 @@
         "@angular/platform-browser": "4.0.0",
         "@angular/platform-browser-dynamic": "4.0.0",
         "@ionic-native/core": "^4.5.2",
-        "@ionic-native/email-composer": "^4.5.2",
         "@ionic-native/splash-screen": "3.4.2",
         "@ionic-native/status-bar": "3.4.2",
-        "@ionic/cloud-angular": "^0.12.0",
         "@ionic/storage": "2.0.1",
         "angularfire2": "^2.0.0-beta.7-pre",
         "cordova-android": "^6.2.3",
@@ -76,8 +73,7 @@
             "ionic-plugin-keyboard": {},
             "cordova-plugin-googleplus": {
                 "REVERSED_CLIENT_ID": "com.googleusercontent.apps.634619610615-5cf9fsk4hbm3h2kupmb3fv7t5s9pis43"
-            },
-            "cordova-plugin-email-composer": {}
+            }
         },
         "platforms": [
             "android"

@@ -34,9 +34,9 @@ export class TabsPage {
     this.rootPage = OfertasPage;
     this.pages = [
       { titulo: 'Disponibles',  component: OfertasPage,   icon: 'paper'},
-      { titulo: 'Pujadas',  component: OfertadasPage, icon: 'send'},
-      { titulo: 'Publicadas',  component: PublicadasPage,   icon: 'megaphone'},
-      { titulo: 'Asignadas',  component: AsignacionesPage,   icon: 'thumbs-up'}
+      { titulo: 'Mis pujas',  component: OfertadasPage, icon: 'send'},
+      { titulo: 'Publicadas por mi',  component: PublicadasPage,   icon: 'megaphone'},
+      { titulo: 'Asignadas a mi',  component: AsignacionesPage,   icon: 'thumbs-up'}
     ];
     this.others = [
       { titulo: 'Perfil',  component: ProfilePage,   icon: 'contact'}
