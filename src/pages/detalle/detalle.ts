@@ -4,9 +4,9 @@ import { FirebaseListObservable, AngularFireDatabase,
   FirebaseObjectObservable  } from 'angularfire2/database';
 import { List } from 'ionic-angular/components/list/list';
 import { Puja } from '../../app/puja';
-import { Transporte } from '../../app/transporte';
 import { UserService } from '../../services/user.services';
 import { TransporteService } from '../../services/transporte.services';
+import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the DetallePage page.
@@ -20,16 +20,26 @@ import { TransporteService } from '../../services/transporte.services';
 })
 export class DetallePage {
 
-  viaje= new Transporte();
+  viaje:any;
+  userProfile: any;
+  assignedProfile: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public transporteService: TransporteService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public transporteService: TransporteService, public userService: UserService) {
 
-    transporteService.getViaje(navParams.get('idViaje')).subscribe(trans => {this.viaje=trans});
+    transporteService.getViaje(navParams.get('idViaje')).subscribe(trans => {
+      this.viaje=trans; 
+      this.userProfile = userService.getUserProfileById(trans.userId);
+      this.assignedProfile = userService.getUserProfileById(trans.idTransportista);
+    });
   }
 
   ionViewDidLoad() {
 //    console.log(this.viaje.origen);
   //    console.log('Carga ' + this.viaje.carga);
+  }
+
+  viewProfile(idProfile) {
+    this.navCtrl.push(ProfilePage, {idUsuario:idProfile})
   }
 
 }
