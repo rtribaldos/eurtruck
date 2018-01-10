@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FirebaseListObservable, AngularFireDatabase,
   FirebaseObjectObservable  } from 'angularfire2/database';
 
+
 @Injectable()
 export class UserService{
 

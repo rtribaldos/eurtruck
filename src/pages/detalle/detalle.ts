@@ -3,7 +3,6 @@ import { IonicPage, NavController, AlertController, NavParams  } from 'ionic-ang
 import { FirebaseListObservable, AngularFireDatabase,
   FirebaseObjectObservable  } from 'angularfire2/database';
 import { List } from 'ionic-angular/components/list/list';
-import { Puja } from '../../app/puja';
 import { UserService } from '../../services/user.services';
 import { TransporteService } from '../../services/transporte.services';
 import { ProfilePage } from '../profile/profile';
@@ -24,10 +23,11 @@ export class DetallePage {
   userProfile: any;
   assignedProfile: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public transporteService: TransporteService, public userService: UserService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public transporteService: TransporteService,
+    public userService: UserService) {
 
     transporteService.getViaje(navParams.get('idViaje')).subscribe(trans => {
-      this.viaje=trans; 
+      this.viaje=trans;
       this.userProfile = userService.getUserProfileById(trans.userId);
       this.assignedProfile = userService.getUserProfileById(trans.idTransportista);
     });

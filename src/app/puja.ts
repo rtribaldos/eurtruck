@@ -1,9 +1,13 @@
 import { Transporte } from './transporte';
 
 export class Puja{
-  idTransporte : string;
+  idViaje : string;
   idUsuario : string;
   importe : number;
   resumen: string;
   fecha: Date;
+  email : string;
+  foto: string;
+  nombre: string;
+  empresa: string;
 }

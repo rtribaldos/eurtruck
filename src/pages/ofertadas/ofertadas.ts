@@ -12,6 +12,8 @@ import { TransporteService } from '../../services/transporte.services';
 import { DetallePage } from '../detalle/detalle';
 import { ProfilePage } from '../profile/profile';
 
+import { Observable, Subscriber } from 'rxjs';
+
 
 @Component({
   selector: 'page-ofertadas',
@@ -24,6 +26,8 @@ export class OfertadasPage {
   idViajeRec : any;
   sonOfertasDeMisViajes = false;
   transporteService : TransporteService;
+
+  pujitas: Observable<Puja[]>;
 
   constructor(
     public navCtrl: NavController,
@@ -43,12 +47,27 @@ export class OfertadasPage {
     console.log('idViaje: ' + this.idViajeRec);
 
     if(this.idViajeRec != null){
-      this.ofertas = pujaService.getOfertasByViaje(this.idViajeRec);
+
+      this.pujitas = pujaService.getOfertasByViaje(this.idViajeRec);
+
       this.sonOfertasDeMisViajes = true;
+
+
     }else{
       this.ofertas = pujaService.getOfertas(this.localUser.uid);
+      this.ofertas.forEach(element => {
+           console.log(element);
+       });
+
     }
   }
+
+
+ getEmail(idUsuario){
+   let usuarioOferta = this.userService.getUserProfileById(idUsuario);
+   usuarioOferta.subscribe(usu => { return usu.email ;});
+
+ }
 
 
   ionViewDidLoad() {
@@ -111,6 +130,10 @@ export class OfertadasPage {
    actionSheet.present();
 }
 
+
+viewProfile(idProfile) {
+  this.navCtrl.push(ProfilePage, {idUsuario:idProfile})
+}
 
 asignar(puja){
   let newTaskModal = this.alertCtrl.create({
