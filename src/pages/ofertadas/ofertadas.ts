@@ -20,13 +20,11 @@ import { Observable, Subscriber } from 'rxjs';
   templateUrl: 'ofertadas.html',
 })
 export class OfertadasPage {
-
   userProfile:any;
   localUser:any;
   idViajeRec : any;
   sonOfertasDeMisViajes = false;
   transporteService : TransporteService;
-
   ofertas: Observable<Puja[]>;
 
   constructor(
@@ -49,14 +47,10 @@ export class OfertadasPage {
     if(this.idViajeRec != null){
 
       this.ofertas = pujaService.getOfertasByViaje(this.idViajeRec);
-
       this.sonOfertasDeMisViajes = true;
-
 
     }else{
       this.ofertas = pujaService.getOfertas(this.localUser.uid);
-    
-
     }
   }
 
