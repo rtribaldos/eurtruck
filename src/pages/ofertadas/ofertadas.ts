@@ -20,14 +20,14 @@ import { Observable, Subscriber } from 'rxjs';
   templateUrl: 'ofertadas.html',
 })
 export class OfertadasPage {
-  ofertas: FirebaseListObservable<any>;
+
   userProfile:any;
   localUser:any;
   idViajeRec : any;
   sonOfertasDeMisViajes = false;
   transporteService : TransporteService;
 
-  pujitas: Observable<Puja[]>;
+  ofertas: Observable<Puja[]>;
 
   constructor(
     public navCtrl: NavController,
@@ -48,16 +48,14 @@ export class OfertadasPage {
 
     if(this.idViajeRec != null){
 
-      this.pujitas = pujaService.getOfertasByViaje(this.idViajeRec);
+      this.ofertas = pujaService.getOfertasByViaje(this.idViajeRec);
 
       this.sonOfertasDeMisViajes = true;
 
 
     }else{
       this.ofertas = pujaService.getOfertas(this.localUser.uid);
-      this.ofertas.forEach(element => {
-           console.log(element);
-       });
+    
 
     }
   }

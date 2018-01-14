@@ -19,12 +19,37 @@ export class PujaService{
   }
 
    public getOfertas(idUser){
-    return this.database.list('/ofertas',{
+     let pujasObservable = new Observable<Puja[]>();
+     let pujas=[];
+
+     this.ofertas= this.database.list('/ofertas',{
        query:{
          orderByChild: 'idUsuario',
          equalTo: idUser
        }
      });
+
+     let usuarioOferta = this.userService.getUserProfileById(idUser);
+
+     this.ofertas.subscribe(items => {
+         items.forEach(item => {
+         let puja = new Puja();
+         puja.resumen= item.resumen;
+         puja.importe = item.importe;
+         puja.idViaje = item.idViaje;
+         puja.idUsuario = item.idUsuario;
+         usuarioOferta.subscribe(usu => {
+           puja.email=usu.email ;
+           puja.nombre= usu.contactName;
+           puja.empresa= usu.empresa;
+           puja.foto= usu.picture;
+         });
+
+         pujas.push(puja);
+
+       });
+     });
+    return  pujasObservable =  Observable.of(pujas);
   }
 
   public getOfertasByViaje(idViaje): Observable<Puja[]>{

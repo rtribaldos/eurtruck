@@ -11,7 +11,7 @@
 
 <ion-content>
     <ion-list>
-      <ion-item ion-item *ngFor="let oferta of pujitas  | async">
+      <ion-item ion-item *ngFor="let oferta of ofertas  | async">
 
         <div *ngIf="sonOfertasDeMisViajes; else divPujadas">
           <ion-card (click)="presentActionSheetOfertas(oferta)">
