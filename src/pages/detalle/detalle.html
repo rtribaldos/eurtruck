@@ -71,14 +71,14 @@
     </ion-item>
 
     <ion-item (click)="viewProfile(viaje.userId)">
-      <ion-avatar item-start large (click)="viewProfile(viaje.userId)">
+      <ion-avatar item-start large>
         <img src="{{ (userProfile | async)?.picture }}" >
       </ion-avatar>
       <h2>Publicado por</h2>
       <p>{{ (userProfile | async)?.contactName }} / {{ (userProfile | async)?.empresa }}</p>
     </ion-item>
     <ion-item *ngIf="viaje.idTransportista!=''" (click)="viewProfile(viaje.idTransportista)">
-      <ion-avatar item-start large (click)="viewProfile(viaje.idTransportista)">
+      <ion-avatar item-start large>
         <img src="{{ (assignedProfile | async)?.picture }}" >
       </ion-avatar>
       <h2>Asignado a</h2>
