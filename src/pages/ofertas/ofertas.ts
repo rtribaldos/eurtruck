@@ -71,6 +71,7 @@ export class OfertasPage {
               idViaje: viaje.$key,
               importe: data.importe,
               idUsuario:this.localUser.uid,
+              anulada: false,
               fecha:new Date(),
               resumen: 'De ' + viaje.origen.formatted_address + ' a ' + viaje.destino.formatted_address
             });

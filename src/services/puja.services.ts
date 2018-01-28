@@ -72,6 +72,7 @@ export class PujaService{
         puja.importe = item.importe;
         puja.idViaje = item.idViaje;
         puja.idUsuario = item.idUsuario;
+        puja.anulada = item.anulada;
         usuarioOferta.subscribe(usu => {
           puja.email=usu.email ;
           puja.nombre= usu.contactName;

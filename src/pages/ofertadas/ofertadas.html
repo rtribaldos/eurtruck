@@ -27,13 +27,14 @@
 
         <ng-template #divPujadas>
           <ion-card (click)="presentActionSheetDetalle(oferta)">
-            <ion-item>
-               <ion-avatar item-left>
-                 <img src="{{ oferta.foto }}" />
-               </ion-avatar>
-               <h2>{{ oferta.resumen }}</h2>
-               <p><b>Importe ofertado {{ oferta.importe }}</b></p>
-             </ion-item>
+              <ion-item>
+                  <ion-icon color="subtle" name="arrow-dropright-circle" item-start large></ion-icon>
+                  <h2>{{ oferta.resumen }}</h2>
+              </ion-item>
+                <ion-item>
+                  <ion-icon color="subtle" name="card" item-start large></ion-icon>
+                  <h2>Ofertad: {{ oferta.importe }} Euros</h2>
+                </ion-item>
           </ion-card>
         </ng-template>
 

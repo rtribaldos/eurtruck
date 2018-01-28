@@ -10,4 +10,6 @@ export class Puja{
   foto: string;
   nombre: string;
   empresa: string;
+  anulada: boolean;
+  estado: string;
 }
