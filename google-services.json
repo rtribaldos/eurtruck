@@ -1,35 +1,39 @@
 {
   "project_info": {
-    "project_number": "507909632345",
-    "firebase_url": "https://etrans-95c74.firebaseio.com",
-    "project_id": "etrans-95c74",
-    "storage_bucket": "etrans-95c74.appspot.com"
+    "project_number": "634619610615",
+    "firebase_url": "https://fir-eurtruck.firebaseio.com",
+    "project_id": "firebase-eurtruck",
+    "storage_bucket": "firebase-eurtruck.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:507909632345:android:4a5570b2be54fd8a",
+        "mobilesdk_app_id": "1:634619610615:android:e703d910bc434251",
         "android_client_info": {
-          "package_name": "com.ionicframework.findjob486787"
+          "package_name": "com.tribisoft.eurtruck"
         }
       },
       "oauth_client": [
         {
-          "client_id": "507909632345-29bbek30kiqfm0j6c1ggpv7cpinrqtae.apps.googleusercontent.com",
+          "client_id": "634619610615-g9v08cia24pal3afcqisk4necahkg001.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "634619610615-5cf9fsk4hbm3h2kupmb3fv7t5s9pis43.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.ionicframework.findjob486787",
+            "package_name": "com.tribisoft.eurtruck",
             "certificate_hash": "6565283e493018639e68ded878ccb1acc75bea50"
           }
         },
         {
-          "client_id": "507909632345-fbshfhg897sfa7o475va6ppb68i13e3d.apps.googleusercontent.com",
+          "client_id": "634619610615-6rp6a17s03s3l1f8a2uj1k2chrt1evgt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBLVyzjMCxsNoBdD5jqDw1PWOOcElASXDg"
+          "current_key": "AIzaSyAfaSc5eCbe30EDXjeEtO4-wgOyOvgTC6s"
         }
       ],
       "services": {
@@ -40,7 +44,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "507909632345-fbshfhg897sfa7o475va6ppb68i13e3d.apps.googleusercontent.com",
+              "client_id": "634619610615-g9v08cia24pal3afcqisk4necahkg001.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
