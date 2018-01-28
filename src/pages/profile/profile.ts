@@ -13,7 +13,6 @@ import { UserService } from '../../services/user.services';
 })
 export class ProfilePage {
 
-
   userProfile: any;
   soloLectura = false;
 
