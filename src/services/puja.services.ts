@@ -87,4 +87,25 @@ export class PujaService{
     return  pujasObservable =  Observable.of(pujas);
  }
 
+ public anulaPujas(idViaje){
+
+  this.ofertas= this.database.list('/ofertas',{
+     query:{
+       orderByChild: 'idViaje',
+       equalTo: idViaje
+     }
+   });
+
+   this.ofertas.subscribe(items => {
+       items.forEach(item => {
+         item.anulada=true;
+     });
+   });
+
+ }
+
+
+
+
+
  }

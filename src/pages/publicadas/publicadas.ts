@@ -5,6 +5,8 @@ import { DetallePage } from '../detalle/detalle';
 import { OfertadasPage } from '../ofertadas/ofertadas';
 import { UserService } from '../../services/user.services';
 import { TransporteService } from '../../services/transporte.services';
+import { PujaService } from '../../services/puja.services';
+
 
 @Component({
   selector: 'page-publicadas',
@@ -21,6 +23,7 @@ export class PublicadasPage {
     public alertCtrl: AlertController,
     public userService: UserService,
     public transporteService: TransporteService,
+    public pujaService: PujaService,
     public database: AngularFireDatabase,
     public actionSheetCtrl: ActionSheetController
   ){
@@ -73,6 +76,7 @@ export class PublicadasPage {
          text: 'Aceptar',
           handler: data => {
             this.transporteService.removeViaje(viaje);
+            this.pujaService.anulaPujas(viaje.key);
          }
        }
      ]
