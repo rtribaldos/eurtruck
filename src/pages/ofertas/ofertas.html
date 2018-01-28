@@ -19,7 +19,8 @@
         </ion-fab-list>
       </ion-fab>
 
-    <ion-list *ngFor='let viaje of viajes | async'>
+    <ion-list *ngFor="let viaje of viajes | async " >
+
         <ion-card class="adv-map">
           <div style="position: relative">
             <img src="https://maps.googleapis.com/maps/api/staticmap?size=600x300&path=color:0x0000ff|weight:5|{{ viaje.origen.lat }},{{ viaje.origen.lng }}|{{ viaje.destino.lat }},{{ viaje.destino.lng }}&key=AIzaSyDAwA6ASuWzPzvoSHZDSWdBwKkjwEN9Pp0">

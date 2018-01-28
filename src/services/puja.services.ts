@@ -30,7 +30,6 @@ export class PujaService{
      });
 
      let usuarioOferta = this.userService.getUserProfileById(idUser);
-
      this.ofertas.subscribe(items => {
          items.forEach(item => {
          let puja = new Puja();
@@ -44,9 +43,7 @@ export class PujaService{
            puja.empresa= usu.empresa;
            puja.foto= usu.picture;
          });
-
          pujas.push(puja);
-
        });
      });
     return  pujasObservable =  Observable.of(pujas);
@@ -84,7 +81,6 @@ export class PujaService{
 
       });
     });
-
     return  pujasObservable =  Observable.of(pujas);
  }
 

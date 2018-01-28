@@ -13,7 +13,8 @@ export class TransporteService{
        query:{
          orderByChild: 'idTransportista',
          equalTo: ''
-       }});
+       }
+     });
   }
 
    public getViajes(){
@@ -60,6 +61,8 @@ export class TransporteService{
        }
      });
    }
+
+
 
 
    removeViaje( viaje ){
