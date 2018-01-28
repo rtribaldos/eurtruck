@@ -6,7 +6,6 @@ import { DetallePage } from '../detalle/detalle';
 import { UserService } from '../../services/user.services';
 import { TransporteService } from '../../services/transporte.services';
 import { PujaService } from '../../services/puja.services';
-import { ReversePipe } from '../app/reverse.pipe';
 
 
 @IonicPage()
