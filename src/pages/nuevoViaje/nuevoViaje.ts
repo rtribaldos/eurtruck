@@ -84,7 +84,7 @@ export class NuevoViajePage {
       this.loadMap();
       var inputOrigen = document.getElementById('originText').getElementsByTagName('input')[0];
       var inputDestino = document.getElementById('destinyText').getElementsByTagName('input')[0];
-      var options = {componentRestrictions: {country: 'es'}};
+      var options = {componentRestrictions: {country: ["fr","es","ad","pt","it"]}};
       this.autocompleteOrigen = new google.maps.places.Autocomplete(inputOrigen, options);
       this.autocompleteDestino = new google.maps.places.Autocomplete(inputDestino, options);
       this.autocompleteOrigen.addListener('place_changed', () => {
