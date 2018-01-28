@@ -46,9 +46,9 @@ export class PublicadasPage {
           this.navCtrl.push(OfertadasPage, {idViaje:viaje.$key});
          }
        },{
-         text: 'Cancelar',
+         text: 'Anular',
          handler: () => {
-           console.log('Cancelado');
+           this.borrar(viaje);
          }
        }
      ]
@@ -56,5 +56,30 @@ export class PublicadasPage {
 
     actionSheet.present();
  }
+
+
+ borrar(viaje){
+   let newTaskModal = this.alertCtrl.create({
+     title: 'Anular el transporte?',
+
+     buttons: [
+       {
+         text: 'Cancel',
+         handler: data => {
+           console.log('Cancel clicked');
+         }
+       },
+       {
+         text: 'Aceptar',
+          handler: data => {
+            this.transporteService.removeViaje(viaje);
+         }
+       }
+     ]
+   });
+   newTaskModal.present( newTaskModal );
+ }
+
+
 
 }
