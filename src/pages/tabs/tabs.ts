@@ -12,12 +12,15 @@ import { OfertadasPage } from '../ofertadas/ofertadas';
 import { PublicadasPage } from '../publicadas/publicadas';
 import { AsignacionesPage } from '../asignaciones/asignaciones';
 import { MyJobsPage } from '../myjobs/myjobs';
+import { UserService } from '../../services/user.services';
 
 
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
+
+  userProfile: any;
 
 
   @ViewChild('NAV') nav: Nav;
@@ -28,26 +31,36 @@ export class TabsPage {
   constructor(
     platform:     Platform,
     statusBar:    StatusBar,
-    splashScreen: SplashScreen
+    splashScreen: SplashScreen,
+    public userService: UserService
   ) {
 
-    this.rootPage = OfertasPage;
-    this.pages = [
-      { titulo: 'Disponibles',  component: OfertasPage,   icon: 'paper'},
-      { titulo: 'Mis pujas',  component: OfertadasPage, icon: 'send'},
-      { titulo: 'Publicadas por mi',  component: PublicadasPage,   icon: 'megaphone'},
-      { titulo: 'Asignadas a mi',  component: AsignacionesPage,   icon: 'thumbs-up'}
-    ];
-    this.others = [
-      { titulo: 'Perfil',  component: ProfilePage,   icon: 'contact'}
-    ];
+    userService.getUserProfile().subscribe((result) => {
+      this.userProfile = result;
+      if (this.userProfile.validated) {
+        this.rootPage = OfertasPage;
+        this.pages = [
+          { titulo: 'Disponibles',  component: OfertasPage,   icon: 'paper'},
+          { titulo: 'Mis pujas',  component: OfertadasPage, icon: 'send'},
+          { titulo: 'Publicadas por mi',  component: PublicadasPage,   icon: 'megaphone'},
+          { titulo: 'Asignadas a mi',  component: AsignacionesPage,   icon: 'thumbs-up'}
+        ];
+      } else {
+        this.rootPage = ProfilePage;
+      }
+      this.others = [
+        { titulo: 'Perfil',  component: ProfilePage,   icon: 'contact'}
+      ];
+  
+      platform.ready().then(() => {
+        // Okay, so the platform is ready and our plugins are available.
+        // Here you can do any higher level native things you might need.
+        statusBar.styleDefault();
+        splashScreen.hide();
+      });
+  });
 
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
+    
   }
 
   goToPage(page){
