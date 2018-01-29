@@ -1,90 +1,66 @@
 <ion-header>
     <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
       <ion-title>
-        Oferta
+        Nueva Oferta
       </ion-title>
-      <ion-buttons start>
-        <button ion-button icon-left (click)="prev()"><ion-icon name="arrow-back"></ion-icon> Anterior</button>
-      </ion-buttons>
-      <ion-buttons end>
-        <button ion-button icon-right (click)="next()">Siguiente <ion-icon name="arrow-forward"></ion-icon></button>
-      </ion-buttons>
     </ion-navbar>
 </ion-header>
  
-<ion-content>
- 
-  <ion-slides #signupSlider pager>
+<ion-content>    
+
+   <ion-list inset>
+        <form #myForm='ngForm' (ngSubmit)="onSubmit(myForm)">
+            <ion-item class="text-center item-accordion item-icon-left item-header"> 
+                <ion-label stacked>Origen</ion-label>
+                <ion-input type="text" [(ngModel)]="origen" name="origen" id="originText"></ion-input>
+            </ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
+                <ion-label stacked>Destino</ion-label>
+                <ion-input type="text" [(ngModel)]="destino" name="destino" id="destinyText"></ion-input>
+            </ion-item>
+            <ion-item class="item-accordion " >
+                <div #map id="map"></div>
+            </ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header"> 
+                <ion-label stacked>Mercancía</ion-label>
+                <ion-input type="text" [(ngModel)]="mercancia" name="mercancia"></ion-input>
+            </ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
+                <ion-label stacked>Volumen/carga</ion-label>
+                <ion-input type="text" [(ngModel)]="carga" name="carga"></ion-input>
+            </ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
+                <ion-label stacked>Fecha de Carga</ion-label>
+                <ion-datetime min="2017" max="2036-10-31" displayFormat="MM/DD/YYYY" [(ngModel)]="fechac" name="fechac"></ion-datetime>
+            </ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
+                <ion-label stacked>Fecha de descarga</ion-label>
+                <ion-datetime min="2017" max="2036-10-31" displayFormat="MM/DD/YYYY" [(ngModel)]="fechad" name="fechad"></ion-datetime>
+            </ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
+                <ion-label stacked>Especificaciones</ion-label>
+                <ion-textarea type="text" [(ngModel)]="especificaciones" name="especificaciones"></ion-textarea>
+            </ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
+                <ion-label stacked>Observaciones</ion-label>
+                <ion-textarea type="text" [(ngModel)]="observaciones" name="observaciones"></ion-textarea>
+            </ion-item>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
+                <ion-label stacked>Código de lavado</ion-label>
+                <ion-textarea type="text" [(ngModel)]="codigoLavado" name="codigoLavado"></ion-textarea>
+            </ion-item>
+
+            <div class="loginButton">
+                <button class="google-sign-in button button-block"  ion-button>Publicar Viaje</button>
+            </div>            
+
+        </form>
+    </ion-list>
+
   
-    <ion-slide>
-  
-      <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
-  
-      <ion-list no-lines>
-  
-          <form [formGroup]="slideOneForm">
-  
-              <ion-item>
-                  <ion-label floating>Destino</ion-label>
-                  <ion-input formControlName="destino" type="text"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-label floating>Carga</ion-label>
-                  <ion-input formControlName="carga" type="text"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-label floating>Fecha de carga</ion-label>
-                  <ion-input formControlName="fechac" type="text"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-label floating>Fecha de descarga</ion-label>
-                  <ion-input formControlName="fechad" type="text"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-label floating>Mercancía</ion-label>
-                  <ion-input formControlName="mercancia" type="text"></ion-input>
-              </ion-item>
-         
-             
-  
-          </form>
-  
-      </ion-list>
-  
-    </ion-slide>
-  
-    <ion-slide>
-  
-      <ion-list no-lines>
-  
-          <form [formGroup]="slideTwoForm"> 
-  
-              <ion-item>
-                  <ion-label floating>Origen</ion-label>
-                  <ion-input  formControlName="origen" type="text"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-label floating>Especificaciones Lavados</ion-label>
-                  <ion-input  formControlName="especificaciones" type="text"></ion-input>
-              </ion-item>
-               <ion-item>
-                  <ion-label floating>Código de Lavado</ion-label>
-                  <ion-input  formControlName="codigoLavado" type="text"></ion-input>
-              </ion-item>
       
-                <ion-item>
-                  <ion-label floating>Observaciones</ion-label>
-                  <ion-textarea formControlName="observaciones"></ion-textarea>
-              </ion-item>
-  
-          </form>
-  
-      </ion-list>
-  
-      <button ion-button full color="primary" (click)="save()">Crear Viaje</button>
-  
-    </ion-slide>
-  
-  </ion-slides>
  
 </ion-content>

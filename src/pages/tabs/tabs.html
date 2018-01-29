@@ -1,6 +1,27 @@
-<ion-tabs>
-  <ion-tab [root]="tab3Root" tabTitle="Perfil" tabIcon="ios-contact-outline"></ion-tab>
-  <ion-tab [root]="tab1Root" tabTitle="Ofertas" tabIcon="ios-briefcase-outline"></ion-tab>
-  <ion-tab [root]="tab4Root" tabTitle="Mis Servicios" tabIcon="ios-bookmarks-outline"></ion-tab>
- <!-- <ion-tab [root]="tab2Root" tabTitle="Notificaciones" tabIcon="ios-chatbubbles-outline"></ion-tab> -->
-</ion-tabs>
+
+<ion-menu [content]="NAV">
+    <ion-content>
+      <img src="assets/eurTruck.png">
+      <ion-list>
+        <ion-item color="dark" text-wrap>
+           <ion-icon name="home"></ion-icon>
+           Ofertas
+            <ion-list>
+              <button color="dark" ion-item *ngFor="let page of pages" (click)="goToPage(page.component)" menuClose>
+                <ion-icon item-left name="{{ page.icon }}"></ion-icon>
+                {{ page.titulo }}
+              </button>
+            </ion-list>
+         </ion-item>
+         <ion-list>
+            <button color="dark" ion-item *ngFor="let page of others" (click)="goToPage(page.component)" menuClose>
+              <ion-icon name="{{ page.icon }}"></ion-icon>
+              {{ page.titulo }}
+            </button>
+          </ion-list>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-nav #NAV [root]="rootPage"></ion-nav>
+  

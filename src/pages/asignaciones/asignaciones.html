@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        Ofertas Asignadas
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content>
+      <ion-list>
+        <ion-item *ngFor='let viaje of viajes | async'>
+           <h2>De {{ viaje.origen.formatted_address }} <br> a  {{ viaje.destino.formatted_address }}</h2>
+          <br> Mercancía {{ viaje.carga }}  de {{ viaje.mercancia }}
+          <button ion-button clear item-right (click)="presentActionSheet(viaje)">Acciones</button>
+        </ion-item>
+      </ion-list>
+    </ion-content>

@@ -18,7 +18,6 @@ export class LoginPage implements OnInit{
 	root:any;
   splash = true;
   secondPage = LoginPage;
-  prueba = 'aaaaa';
   public firebase : any;
   private authState: FirebaseAuthState;
   public onAuth: EventEmitter<FirebaseAuthState> = new EventEmitter();
@@ -160,26 +159,21 @@ export class LoginPage implements OnInit{
        return GooglePlus.login({
           'webClientId':'634619610615-g9v08cia24pal3afcqisk4necahkg001.apps.googleusercontent.com' //your Android reverse client id
         }).then(userData => {
-          console.log("!!!!!!!!!!!!!!!!!!!!!", userData);
-          this.prueba = JSON.stringify(userData);
           var token = userData.idToken;
-          let user = {
-            email:userData.email,
-            picture:userData.imageUrl,
-            uid:userData.userId
-          };
-          window.localStorage.setItem('user',JSON.stringify(user));
           const googleCredential = auth.GoogleAuthProvider.credential(token, null);
           this.firebase.auth().signInWithCredential(googleCredential).then((success)=>{
+            let user = {
+              email:success.email,
+              picture:userData.imageUrl,
+              uid:success.uid
+            };
+            window.localStorage.setItem('user',JSON.stringify(user));
             self.navCtrl.push(TabsPage);
           }).catch(error => {
             console.log(error);
-            this.prueba = JSON.stringify(error);
           });
         }).catch(error => {
             console.log(error);
-            this.prueba = JSON.stringify(error);
-            //observer.error(error);
         });
       } else {
         this.af.auth.login({

@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
 import { NuevoViajePage } from '../nuevoViaje/nuevoViaje';
+import { DetallePage } from '../detalle/detalle';
+import { UserService } from '../../services/user.services';
+import { TransporteService } from '../../services/transporte.services';
+import { PujaService } from '../../services/puja.services';
+
 
 @IonicPage()
 @Component({
@@ -10,63 +15,43 @@ import { NuevoViajePage } from '../nuevoViaje/nuevoViaje';
 })
 export class OfertasPage {
 
-  tasks: FirebaseListObservable<any>;
   viajes: FirebaseListObservable<any>;
+  ofertas: FirebaseListObservable<any>;
 
-  userProfile: FirebaseObjectObservable<any>;
+  userProfile: any;
+  localUser:any;
 
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
-    public database: AngularFireDatabase
+    public transporteService: TransporteService,
+    public pujaService: PujaService,
+    public userService: UserService
   ) {
-    
-    this.viajes = this.database.list('/viajes');
-    let localUser = JSON.parse(window.localStorage.getItem('user'));
-    this.userProfile = this.database.object('/users/'+localUser.uid);
+
+    this.localUser = userService.getLocalUser();
+    this.userProfile = userService.getUserProfile();
+    this.viajes =  transporteService.getViajes();
+    this.ofertas = pujaService.getTotalOfertas();
   }
-  
+
   creaViaje(){
      this.navCtrl.push(NuevoViajePage);
-  } 
- 
-  createViaje(){
+  }
+
+  viewDetails(idViaje) {
+    this.navCtrl.push(DetallePage, {idViaje:idViaje});
+  }
+
+  ofertar(viaje){
     let newTaskModal = this.alertCtrl.create({
       title: 'Oferta de transporte',
       inputs: [
          {
-          name: 'destino',
-          placeholder: 'Introduzca destino'
+          name: 'importe',
+          placeholder: 'Introduzca importe'
         },
         {
-          name: 'origen',
-          placeholder: 'Introduzca origen'
-        },
-         {
-          name: 'fechac',
-          placeholder: 'Fecha de carga'
-        },
-         {
-          name: 'fechad',
-          placeholder: 'Fecha de descarga'
-        },
-        {
-          name: 'mercancia',
-          placeholder: 'Mercancía'
-        },
-        {
-          name: 'especificaciones',
-          placeholder: 'Especificaciones Lavados'
-        },
-        {
-          name: 'codigoLavado',
-          placeholder: 'Código de Lavado'
-        },
-        {
-          name: 'prohibidos',
-          placeholder: 'Productos prohibidos'
-        },
-       {
           name: 'observaciones',
           placeholder: 'Observaciones'
         },
@@ -79,19 +64,16 @@ export class OfertasPage {
           }
         },
         {
-          text: 'Save',
+          text: 'Ofertar',
           handler: data => {
-            this.viajes.push({
-              destino: data.destino,
-              origen: data.origen,
-              fechac: data.fechac,
-              fechad: data.fechad,
-              mercancia: data.mercancia,
-              especificaciones: data.especificaciones,
-              codigoLavado: data.codigoLavado,
-              prohibidos: data.prohibidos,
-              observaciones: data.observaciones,
-              done: false
+
+              this.ofertas.push({
+              idViaje: viaje.$key,
+              importe: data.importe,
+              idUsuario:this.localUser.uid,
+              anulada: false,
+              fecha:new Date(),
+              resumen: 'De ' + viaje.origen.formatted_address + ' a ' + viaje.destino.formatted_address
             });
           }
         }
@@ -100,14 +82,5 @@ export class OfertasPage {
     newTaskModal.present( newTaskModal );
   }
 
-  updateViaje( viaje){
-    this.viajes.update( viaje.$key,{
-      destino: viaje.destino,
-      done: !viaje.done
-    });
-  }
 
-  removeViaje( viaje ){
-    this.viajes.remove( viaje.$key );
-  }
 }

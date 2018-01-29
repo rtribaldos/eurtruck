@@ -1,5 +1,8 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>
       Perfil
     </ion-title>
@@ -8,15 +11,17 @@
 
 <ion-content>
 
-<ion-fab top right edge>
-    <button ion-fab mini color="secondary"><ion-icon name="more"></ion-icon></button>
-    <ion-fab-list>
-      <button ion-fab color="secondary" (click)="adminPage()"><ion-icon name="person-add"></ion-icon></button>
-      <button ion-fab color="danger" (click)="logout()"><ion-icon name="log-out"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>
-  
-  <ion-row>
+<div *ngIf="!soloLectura">
+  <ion-fab top right edge>
+      <button ion-fab mini color="secondary"><ion-icon name="more"></ion-icon></button>
+      <ion-fab-list>
+        <button *ngIf="(userProfile | async)?.admin" ion-fab color="secondary" (click)="adminPage()"><ion-icon name="person-add"></ion-icon></button>
+        <button ion-fab color="danger" (click)="logout()"><ion-icon name="log-out"></ion-icon></button>
+      </ion-fab-list>
+    </ion-fab>
+</div>
+
+<ion-row>
         <ion-col class="col-center">
           <ion-img width="80" height="80" src="{{ (userProfile | async)?.picture }}"></ion-img>
         </ion-col>
@@ -41,43 +46,61 @@
 
     <ion-item>
       <ion-icon name='briefcase' item-left></ion-icon>
-      <ion-label floating>Empresa</ion-label><ion-input type="text" id="empresa" placeholder="" [ngModel]="(userProfile | async)?.empresa" (change)='changeEmpresa($event.target)' name="empresa" class="txt"></ion-input>
+      <ion-label floating>Empresa</ion-label><ion-input type="text" id="empresa" placeholder=""
+        [ngModel]="(userProfile | async)?.empresa" (change)='changeEmpresa($event.target)' name="empresa" class="txt" readonly="{{ soloLectura }}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name='information' item-left></ion-icon>
-      <ion-label floating>Cif</ion-label><ion-input type="text" id="cif" placeholder="" [ngModel]="(userProfile | async)?.cif" (change)='changeEmpresa($event.target)' name="cif" class="txt"></ion-input>
+      <ion-label floating>Cif</ion-label><ion-input type="text" id="cif" placeholder="" [ngModel]="(userProfile | async)?.cif"
+        (change)='changeEmpresa($event.target)' name="cif" class="txt" readonly="{{ soloLectura }}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name='person' item-left></ion-icon>
-      <ion-label floating>Nombre de contacto</ion-label><ion-input type="text" id="contactName" placeholder="" [ngModel]="(userProfile | async)?.contactName" (change)='changeEmpresa($event.target)' name="contactName" class="txt"></ion-input>
+      <ion-label floating>Nombre de contacto</ion-label><ion-input type="text" id="contactName" placeholder=""
+        [ngModel]="(userProfile | async)?.contactName" (change)='changeEmpresa($event.target)'
+         name="contactName" class="txt" readonly="{{ soloLectura }}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name='phone-portrait' item-left></ion-icon>
-      <ion-label floating>Teléfono</ion-label><ion-input type="tel" id="phoneNumber" placeholder="" [ngModel]="(userProfile | async)?.phoneNumber" (change)='changeEmpresa($event.target)' name="phoneNumber" class="txt"></ion-input>
+      <ion-label floating>Teléfono</ion-label><ion-input type="tel" id="phoneNumber" placeholder=""
+        [ngModel]="(userProfile | async)?.phoneNumber" (change)='changeEmpresa($event.target)'
+        name="phoneNumber" class="txt" readonly="{{ soloLectura }}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name='grid' item-left></ion-icon>
-      <ion-label floating>Teléfono fijo</ion-label><ion-input type="tel" id="altPhoneNumber" placeholder="" [ngModel]="(userProfile | async)?.altPhoneNumber" (change)='changeEmpresa($event.target)' name="altPhoneNumber" class="txt"></ion-input>
+      <ion-label floating>Teléfono fijo</ion-label><ion-input type="tel" id="altPhoneNumber" placeholder=""
+        [ngModel]="(userProfile | async)?.altPhoneNumber" (change)='changeEmpresa($event.target)'
+         name="altPhoneNumber" class="txt" readonly="{{ soloLectura }}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name='mail' item-left></ion-icon>
-      <ion-label floating>Mail alternativo</ion-label><ion-input type="email" id="altMail" placeholder="" [ngModel]="(userProfile | async)?.altMail" (change)='changeEmpresa($event.target)' name="altMail" class="txt"></ion-input>
+      <ion-label floating>Mail alternativo</ion-label><ion-input type="email" id="altMail" placeholder=""
+        [ngModel]="(userProfile | async)?.altMail" (change)='changeEmpresa($event.target)'
+        name="altMail" class="txt" readonly="{{ soloLectura }}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name='home' item-left></ion-icon>
-      <ion-label floating>Dirección</ion-label><ion-input type="text" id="address" placeholder="" [ngModel]="(userProfile | async)?.address" (change)='changeEmpresa($event.target)' name="address" class="txt"></ion-input>
+      <ion-label floating>Dirección</ion-label><ion-input type="text" id="address" placeholder=""
+        [ngModel]="(userProfile | async)?.address" (change)='changeEmpresa($event.target)'
+        name="address" class="txt" readonly="{{ soloLectura }}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name='list' item-left></ion-icon>
-      <ion-label floating>Código postal</ion-label><ion-input type="text" id="postalCode" placeholder="" [ngModel]="(userProfile | async)?.postalCode" (change)='changeEmpresa($event.target)' name="postalCode" class="txt"></ion-input>
+      <ion-label floating>Código postal</ion-label><ion-input type="text" id="postalCode" placeholder=""
+        [ngModel]="(userProfile | async)?.postalCode" (change)='changeEmpresa($event.target)'
+        name="postalCode" class="txt" readonly="{{ soloLectura }}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name='list' item-left></ion-icon>
-      <ion-label floating>Población</ion-label><ion-input type="text" id="town" placeholder="" [ngModel]="(userProfile | async)?.town" (change)='changeEmpresa($event.target)' name="town" class="txt"></ion-input>
+      <ion-label floating>Población</ion-label><ion-input type="text" id="town" placeholder=""
+         [ngModel]="(userProfile | async)?.town" (change)='changeEmpresa($event.target)'
+         name="town" class="txt" readonly="{{ soloLectura }}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name='list' item-left></ion-icon>
-      <ion-label floating>Ciudad</ion-label><ion-input type="text" id="city" placeholder="" [ngModel]="(userProfile | async)?.city" (change)='changeEmpresa($event.target)' name="city" class="txt"></ion-input>
+      <ion-label floating>Ciudad</ion-label><ion-input type="text" id="city" placeholder=""
+        [ngModel]="(userProfile | async)?.city" (change)='changeEmpresa($event.target)'
+          name="city" class="txt" readonly="{{ soloLectura }}"></ion-input>
     </ion-item>
   </ion-list>
 
