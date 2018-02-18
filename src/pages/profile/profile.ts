@@ -5,6 +5,7 @@ import { ChatsPage } from '../chats/chats';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import { FirebaseObjectObservable, AngularFireDatabase  } from 'angularfire2/database';
 import { UserService } from '../../services/user.services';
+import firebase from 'firebase';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class ProfilePage {
   }
 
   logout(){
-	//clear any cached data
+  //clear any cached data
+  firebase.auth().signOut();
 	this.app.getRootNav().setRoot(LoginPage);
   }
 
