@@ -31,6 +31,16 @@ export class LoginPage implements OnInit{
   ionViewDidLoad() {
     setTimeout(() => {
       this.splash = false;
+      var userValidated = this.firebase.auth().currentUser;
+      if (userValidated && this.platform.is('cordova')) {
+        let user = {
+          email:userValidated.email,
+          picture:userValidated.imageUrl,
+          uid:userValidated.uid
+        };
+        window.localStorage.setItem('user',JSON.stringify(user));
+        this.navCtrl.push(TabsPage);
+      }      
     }, 4000);
   }
 
@@ -168,7 +178,7 @@ export class LoginPage implements OnInit{
               uid:success.uid
             };
             window.localStorage.setItem('user',JSON.stringify(user));
-            self.navCtrl.push(TabsPage);
+            self.navCtrl.setRoot(TabsPage);
           }).catch(error => {
             console.log(error);
           });
@@ -186,7 +196,7 @@ export class LoginPage implements OnInit{
             uid:response.auth.uid
           };
           window.localStorage.setItem('user',JSON.stringify(user));
-          self.navCtrl.push(TabsPage);
+          self.navCtrl.setRoot(TabsPage);
         }).catch(function(error){
           console.log(error);
         });

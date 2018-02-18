@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { Firebase } from '@ionic-native/firebase';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { ChatsPage } from '../pages/chats/chats';
@@ -82,6 +83,7 @@ export const firebaseConfig = {
     AuthProvider,
     UserFilterPipe,
     StatusBar,
+    Firebase,
     SplashScreen,
     GooglePlus,
     TransporteService, UserService, PujaService,
