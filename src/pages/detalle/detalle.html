@@ -70,7 +70,7 @@
         <ion-textarea disabled type="text" [(ngModel)]="viaje.codigoLavado" name="codigoLavado"></ion-textarea>
     </ion-item>
 
-    <ion-item (click)="viewProfile(viaje.userId)">
+    <ion-item *ngIf="viaje.idTransportista!=''" (click)="viewProfile(viaje.userId)">
       <ion-avatar item-start large>
         <img src="{{ (userProfile | async)?.picture }}" >
       </ion-avatar>
@@ -84,7 +84,7 @@
       <h2>Asignado a</h2>
       <p>{{ (assignedProfile | async)?.contactName }} / {{ (assignedProfile | async)?.empresa }}</p>
     </ion-item>
-    
+
   </ion-card>
 
 </ion-content>
