@@ -153,7 +153,8 @@ export class NuevoViajePage {
         mapTypeControl: false,
         panControl: false,
         zoomControl: false,
-        streetViewControl: false
+        streetViewControl: false,
+        fullscreenControl: false
       }
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
