@@ -5,6 +5,7 @@ import { DetallePage } from '../detalle/detalle';
 import { OfertadasPage } from '../ofertadas/ofertadas';
 import { UserService } from '../../services/user.services';
 import { TransporteService } from '../../services/transporte.services';
+import { Observable, Subscriber } from 'rxjs';
 
 @Component({
   selector: 'page-asignaciones',
@@ -12,7 +13,7 @@ import { TransporteService } from '../../services/transporte.services';
 })
 export class AsignacionesPage {
 
-  viajes: FirebaseListObservable<any>;
+  viajes: Observable<any>;
   userProfile:any;
   localUser:any;
 

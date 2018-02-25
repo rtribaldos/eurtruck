@@ -6,7 +6,7 @@ import { OfertadasPage } from '../ofertadas/ofertadas';
 import { UserService } from '../../services/user.services';
 import { TransporteService } from '../../services/transporte.services';
 import { PujaService } from '../../services/puja.services';
-
+import { Observable, Subscriber } from 'rxjs';
 
 @Component({
   selector: 'page-publicadas',
@@ -14,7 +14,7 @@ import { PujaService } from '../../services/puja.services';
 })
 export class PublicadasPage {
 
-  viajes: FirebaseListObservable<any>;
+  viajes: Observable<any>;
   userProfile:any;
   localUser:any;
 

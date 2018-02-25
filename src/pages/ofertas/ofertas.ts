@@ -18,9 +18,6 @@ export class OfertasPage {
 
   viajes: Observable<any>;
   ofertas: FirebaseListObservable<any>;
-
-
-
   userProfile: any;
   localUser:any;
 

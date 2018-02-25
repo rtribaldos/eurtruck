@@ -25,7 +25,7 @@ export class TransporteService{
 
 public getViajesDisponibles(){
    let viajesFiltrados=[];
-     this.viajes.subscribe(viajes => {
+   this.viajes.subscribe(viajes => {
        viajes.forEach(viaje => {
          if(viaje.idTransportista==''){
            viajesFiltrados.push(viaje);
@@ -59,24 +59,29 @@ updateViaje(viaje){
 
  public getOfertasPublicadas(id){
    console.log('buscando ofertas para el user ' + id);
-   return this.database.list('/viajes',{
-     query:{
-       orderByChild: 'userId',
-       equalTo: id
-     }
-   });
- }
+   let viajesFiltrados=[];
+   this.viajes.subscribe(viajes => {
+       viajes.forEach(viaje => {
+         if(viaje.userId==id){
+           viajesFiltrados.push(viaje);
+         }
+       });
+     });
+   return  Observable.of(viajesFiltrados);
+}
 
  public getOfertasAsignadas(id){
    console.log('buscando ofertas asignadas para el user ' + id);
-   return this.database.list('/viajes',{
-     query:{
-       orderByChild: 'idTransportista',
-       equalTo: id
-     }
-   });
- }
-
+   let viajesFiltrados=[];
+   this.viajes.subscribe(viajes => {
+       viajes.forEach(viaje => {
+         if(viaje.idTransportista==id){
+           viajesFiltrados.push(viaje);
+         }
+       });
+     });
+   return  Observable.of(viajesFiltrados);
+}
 
  removeViaje( viaje ){
    this.viajes.remove( viaje.$key );
