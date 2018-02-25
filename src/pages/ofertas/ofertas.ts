@@ -6,6 +6,7 @@ import { DetallePage } from '../detalle/detalle';
 import { UserService } from '../../services/user.services';
 import { TransporteService } from '../../services/transporte.services';
 import { PujaService } from '../../services/puja.services';
+import { Observable, Subscriber } from 'rxjs';
 
 
 @IonicPage()
@@ -15,8 +16,10 @@ import { PujaService } from '../../services/puja.services';
 })
 export class OfertasPage {
 
-  viajes: FirebaseListObservable<any>;
+  viajes: Observable<any>;
   ofertas: FirebaseListObservable<any>;
+
+
 
   userProfile: any;
   localUser:any;
@@ -31,7 +34,7 @@ export class OfertasPage {
 
     this.localUser = userService.getLocalUser();
     this.userProfile = userService.getUserProfile();
-    this.viajes =  transporteService.getViajes();
+    this.viajes =  transporteService.getViajesDisponibles();
     this.ofertas = pujaService.getTotalOfertas();
   }
 

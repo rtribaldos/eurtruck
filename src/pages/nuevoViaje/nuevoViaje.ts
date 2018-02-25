@@ -18,7 +18,6 @@ export class NuevoViajePage {
     myForm: FormGroup;
     localUser: any;
     autocompleteOrigen: any;
-
     autocompleteDestino: any;
     poly = new google.maps.Polyline({
       strokeColor: '#FF0000',
@@ -57,6 +56,11 @@ export class NuevoViajePage {
 
     onSubmit(formData) {
       console.log('User id '  +  this.localUser.uid);
+      let ahora:any = new Date();
+      let dateOrigen:any =  new Date(0);
+
+      let fechaEnMilis:number = ahora - dateOrigen;
+
       var destinoVar = this.autocompleteDestino.getPlace().geometry.location.toJSON()
       destinoVar.formatted_address = this.autocompleteDestino.getPlace().formatted_address;
       destinoVar.name = this.autocompleteDestino.getPlace().name;
@@ -76,7 +80,9 @@ export class NuevoViajePage {
         codigoLavado: formData.value.codigoLavado,
         idTransportista:'',
         userId: this.localUser.uid,
-        done: false
+        done: false,
+        fechaCreacion: fechaEnMilis,
+        fechaOrden: (-1 * fechaEnMilis)        
      });
      this.navCtrl.popTo(OfertasPage);
     }
