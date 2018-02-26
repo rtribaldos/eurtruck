@@ -11,4 +11,6 @@ export class Transporte{
     especificaciones : string;
     codigoLavado : string;
     idTransportista: string;
+    fechaCreacion: number;
+    fechaOrden: number;
 }

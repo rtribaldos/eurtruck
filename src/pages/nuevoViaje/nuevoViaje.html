@@ -8,59 +8,69 @@
       </ion-title>
     </ion-navbar>
 </ion-header>
- 
-<ion-content>    
+
+<ion-content>
 
    <ion-list inset>
-        <form #myForm='ngForm' (ngSubmit)="onSubmit(myForm)">
-            <ion-item class="text-center item-accordion item-icon-left item-header"> 
-                <ion-label stacked>Origen</ion-label>
-                <ion-input type="text" [(ngModel)]="origen" name="origen" id="originText"></ion-input>
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" novalidate>
+            <ion-item class="text-center item-accordion item-icon-left item-header">
+                <ion-label floating>Origen</ion-label>
+                <ion-input type="text" formControlName="origen" name="origen" id="origen"></ion-input>
             </ion-item>
+            <p [hidden]="myForm.controls.origen.valid" danger padding-left>Obligatorio</p>
             <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label stacked>Destino</ion-label>
-                <ion-input type="text" [(ngModel)]="destino" name="destino" id="destinyText"></ion-input>
+                <ion-input type="text" formControlName="destino" name="destino" id="destino"></ion-input>
             </ion-item>
-            <ion-item class="item-accordion " >
+            <p [hidden]="myForm.controls.destino.valid" danger padding-left>Obligatorio</p>
+            <ion-item class="item-accordion" readOnly>
                 <div #map id="map"></div>
             </ion-item>
-            <ion-item class="text-center item-accordion item-icon-left item-header"> 
+            <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label stacked>Mercancía</ion-label>
-                <ion-input type="text" [(ngModel)]="mercancia" name="mercancia"></ion-input>
+                <ion-input type="text" formControlName="mercancia" name="mercancia"></ion-input>
             </ion-item>
+            <p [hidden]="myForm.controls.mercancia.valid" danger padding-left>Obligatorio</p>
             <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label stacked>Volumen/carga</ion-label>
-                <ion-input type="text" [(ngModel)]="carga" name="carga"></ion-input>
+                <ion-input type="text" formControlName="carga" name="carga"></ion-input>
             </ion-item>
+            <p [hidden]="myForm.controls.carga.valid" danger padding-left>Obligatorio</p>
             <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label stacked>Fecha de Carga</ion-label>
-                <ion-datetime min="2017" max="2036-10-31" displayFormat="MM/DD/YYYY" [(ngModel)]="fechac" name="fechac"></ion-datetime>
+                <ion-datetime min="2017" max="2036-10-31" displayFormat="MM/DD/YYYY" formControlName="fechac" name="fechac"></ion-datetime>
             </ion-item>
+              <p [hidden]="myForm.controls.fechac.valid" danger padding-left>Obligatorio</p>
             <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label stacked>Fecha de descarga</ion-label>
-                <ion-datetime min="2017" max="2036-10-31" displayFormat="MM/DD/YYYY" [(ngModel)]="fechad" name="fechad"></ion-datetime>
+                <ion-datetime min="2017" max="2036-10-31" displayFormat="MM/DD/YYYY" formControlName="fechad" name="fechad"></ion-datetime>
             </ion-item>
+              <p [hidden]="myForm.controls.fechad.valid" danger padding-left>Obligatorio</p>
             <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label stacked>Especificaciones</ion-label>
-                <ion-textarea type="text" [(ngModel)]="especificaciones" name="especificaciones"></ion-textarea>
+                <ion-textarea type="text" formControlName="especificaciones" name="especificaciones"></ion-textarea>
             </ion-item>
             <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label stacked>Observaciones</ion-label>
-                <ion-textarea type="text" [(ngModel)]="observaciones" name="observaciones"></ion-textarea>
+                <ion-textarea type="text" formControlName="observaciones" name="observaciones"></ion-textarea>
             </ion-item>
             <ion-item class="text-center item-accordion item-icon-left item-header">
                 <ion-label stacked>Código de lavado</ion-label>
-                <ion-textarea type="text" [(ngModel)]="codigoLavado" name="codigoLavado"></ion-textarea>
+                <ion-textarea type="text" formControlName="codigoLavado" name="codigoLavado"></ion-textarea>
             </ion-item>
 
             <div class="loginButton">
-                <button class="google-sign-in button button-block"  ion-button>Publicar Viaje</button>
-            </div>            
 
+              <button class="google-sign-in button button-block"  ion-button
+                  [disabled]="!myForm.controls.origen.valid || !myForm.controls.destino.valid
+                    || !myForm.controls.mercancia.valid || !myForm.controls.carga.valid
+                    || !myForm.controls.fechac.valid || !myForm.controls.fechad.valid"
+                  >Publicar Viaje</button>
+          </div>
         </form>
     </ion-list>
 
-  
-      
- 
+
+
+
 </ion-content>

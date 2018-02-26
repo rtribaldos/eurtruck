@@ -1,22 +1,22 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase  } from 'angularfire2/database';
 import { OfertasPage } from '../ofertas/ofertas';
 
 declare var google;
- 
+
 @Component({
   selector: 'page-nuevoViaje',
   templateUrl: 'nuevoViaje.html'
 })
 export class NuevoViajePage {
-  
+
     @ViewChild('map') mapElement: ElementRef;
     map: any;
-    viajes: FirebaseListObservable<any>;  
+    viajes: FirebaseListObservable<any>;
     myForm: FormGroup;
-    localUser: any; 
+    localUser: any;
     autocompleteOrigen: any;
     autocompleteDestino: any;
     poly = new google.maps.Polyline({
@@ -29,25 +29,25 @@ export class NuevoViajePage {
       map: this.map,
       label: 'O'
     });
-  
+
     markerDestino = new google.maps.Marker({
       map: this.map,
       label: 'D'
     });
-    
- 
-    constructor(public navCtrl: NavController, public builder: FormBuilder, 
+
+
+    constructor(public navCtrl: NavController, public builder: FormBuilder,
         public database: AngularFireDatabase) {
 
       this.localUser= JSON.parse(window.localStorage.getItem('user'));
       this.viajes = this.database.list('/viajes');
       this.myForm = builder.group({
-        'origen': ['',],
-        'destino': ['',],
-        'fechac':['',],
-        'fechad':['',],
-        'carga':['',],
-        'mercancia':['',],
+        'origen': ['', Validators.required],
+        'destino': ['', Validators.required],
+        'fechac':['', Validators.required],
+        'fechad':['', Validators.required],
+        'carga':['', Validators.required],
+        'mercancia':['', Validators.required],
         'observaciones':['',],
         'especificaciones':['',],
         'codigoLavado':['',]
@@ -56,6 +56,11 @@ export class NuevoViajePage {
 
     onSubmit(formData) {
       console.log('User id '  +  this.localUser.uid);
+      let ahora:any = new Date();
+      let dateOrigen:any =  new Date(0);
+
+      let fechaEnMilis:number = ahora - dateOrigen;
+
       var destinoVar = this.autocompleteDestino.getPlace().geometry.location.toJSON()
       destinoVar.formatted_address = this.autocompleteDestino.getPlace().formatted_address;
       destinoVar.name = this.autocompleteDestino.getPlace().name;
@@ -75,15 +80,18 @@ export class NuevoViajePage {
         codigoLavado: formData.value.codigoLavado,
         idTransportista:'',
         userId: this.localUser.uid,
-        done: false
+        done: false,
+        fechaCreacion: fechaEnMilis,
+        fechaOrden: (-1 * fechaEnMilis)        
      });
      this.navCtrl.popTo(OfertasPage);
     }
 
     ionViewDidLoad(){
       this.loadMap();
-      var inputOrigen = document.getElementById('originText').getElementsByTagName('input')[0];
-      var inputDestino = document.getElementById('destinyText').getElementsByTagName('input')[0];
+
+      var inputOrigen = document.getElementById('origen').getElementsByTagName('input')[0];
+      var inputDestino = document.getElementById('destino').getElementsByTagName('input')[0];
       var options = {componentRestrictions: {country: ["fr","es","ad","pt","it"]}};
       this.autocompleteOrigen = new google.maps.places.Autocomplete(inputOrigen, options);
       this.autocompleteDestino = new google.maps.places.Autocomplete(inputDestino, options);
@@ -126,19 +134,18 @@ export class NuevoViajePage {
             this.map.setZoom(15);
           }
         } else {
-          document.getElementById('destinyText').getElementsByTagName('input')[0].placeholder = 'Enter a city';
+          document.getElementById('destino').getElementsByTagName('input')[0].placeholder = 'Introduzca una ciudad';
         }
       });
+
     }
 
-    ngAfterViewInit() {
-      
-  }
-   
+    ngAfterViewInit() {}
+
     loadMap(){
-   
+
       let latLng = new google.maps.LatLng(40.5, -3.7);
-   
+
       let mapOptions = {
         center: latLng,
         zoom: 5,
@@ -146,12 +153,13 @@ export class NuevoViajePage {
         mapTypeControl: false,
         panControl: false,
         zoomControl: false,
-        streetViewControl: false
+        streetViewControl: false,
+        fullscreenControl: false
       }
-   
+
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-   
+
     }
-  
- 
+
+
 }

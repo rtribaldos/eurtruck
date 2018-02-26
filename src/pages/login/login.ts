@@ -8,6 +8,7 @@ import { AuthProvider } from '../../providers/auth-provider';
 import { Platform } from 'ionic-angular';
 import { GooglePlus } from 'ionic-native';
 import { auth } from 'firebase'; //needed for the GoogleAuthProvider
+import firebase from 'firebase';
 
 @Component({
   selector: 'page-login',
@@ -18,12 +19,12 @@ export class LoginPage implements OnInit{
 	root:any;
   splash = true;
   secondPage = LoginPage;
-  public firebase : any;
+  //public firebase : any;
   private authState: FirebaseAuthState;
   public onAuth: EventEmitter<FirebaseAuthState> = new EventEmitter();
 
-  constructor(public navCtrl: NavController,public af: AngularFire, private googlePlus: GooglePlus, private platform: Platform, public element: ElementRef, public loadingCtrl: LoadingController, @Inject(FirebaseApp)firebase: any, public alertCtrl: AlertController) {
-  	this.firebase = firebase;
+  constructor(public navCtrl: NavController,public af: AngularFire, private googlePlus: GooglePlus, private platform: Platform, public element: ElementRef, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
+  	//this.firebase = firebase;
     window.localStorage.removeItem('user');
   	this.element.nativeElement
   }
@@ -31,6 +32,16 @@ export class LoginPage implements OnInit{
   ionViewDidLoad() {
     setTimeout(() => {
       this.splash = false;
+      var userValidated = firebase.auth().currentUser;
+      if (userValidated && this.platform.is('cordova')) {
+        let user = {
+          email:userValidated.email,
+          picture:userValidated.photoURL,
+          uid:userValidated.uid
+        };
+        window.localStorage.setItem('user',JSON.stringify(user));
+        this.navCtrl.setRoot(TabsPage);
+      }      
     }, 4000);
   }
 
@@ -161,14 +172,14 @@ export class LoginPage implements OnInit{
         }).then(userData => {
           var token = userData.idToken;
           const googleCredential = auth.GoogleAuthProvider.credential(token, null);
-          this.firebase.auth().signInWithCredential(googleCredential).then((success)=>{
+          firebase.auth().signInWithCredential(googleCredential).then((success)=>{
             let user = {
               email:success.email,
               picture:userData.imageUrl,
               uid:success.uid
             };
             window.localStorage.setItem('user',JSON.stringify(user));
-            self.navCtrl.push(TabsPage);
+            self.navCtrl.setRoot(TabsPage);
           }).catch(error => {
             console.log(error);
           });
@@ -186,7 +197,7 @@ export class LoginPage implements OnInit{
             uid:response.auth.uid
           };
           window.localStorage.setItem('user',JSON.stringify(user));
-          self.navCtrl.push(TabsPage);
+          self.navCtrl.setRoot(TabsPage);
         }).catch(function(error){
           console.log(error);
         });
