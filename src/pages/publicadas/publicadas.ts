@@ -7,6 +7,7 @@ import { UserService } from '../../services/user.services';
 import { TransporteService } from '../../services/transporte.services';
 import { PujaService } from '../../services/puja.services';
 import { Observable, Subscriber } from 'rxjs';
+import { Transporte } from '../../app/transporte';
 
 @Component({
   selector: 'page-publicadas',
@@ -14,7 +15,7 @@ import { Observable, Subscriber } from 'rxjs';
 })
 export class PublicadasPage {
 
-  viajes: Observable<any>;
+  viajes: Observable<Transporte[]>;
   userProfile:any;
   localUser:any;
 
@@ -41,12 +42,12 @@ export class PublicadasPage {
        {
          text: 'Detalle',
          handler: () => {
-           this.navCtrl.push(DetallePage, {idViaje:viaje.$key});
+           this.navCtrl.push(DetallePage, {idViaje:viaje.idTransporte});
          }
        },{
          text: 'Pujas',
          handler: () => {
-          this.navCtrl.push(OfertadasPage, {idViaje:viaje.$key});
+          this.navCtrl.push(OfertadasPage, {idViaje:viaje.idTransporte});
          }
        },{
          text: 'Anular',
@@ -76,7 +77,7 @@ export class PublicadasPage {
          text: 'Aceptar',
           handler: data => {
             this.transporteService.removeViaje(viaje);
-            this.pujaService.anulaPujas(viaje.key);
+            this.pujaService.anulaPujas(viaje.idTransporte);
          }
        }
      ]

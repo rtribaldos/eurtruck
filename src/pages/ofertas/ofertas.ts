@@ -14,7 +14,7 @@ import { Observable, Subscriber } from 'rxjs';
   selector: 'page-home',
   templateUrl: 'ofertas.html'
 })
-export class OfertasPage {
+export class OfertasPage{
 
   viajes: Observable<any>;
   ofertas: FirebaseListObservable<any>;
@@ -31,13 +31,18 @@ export class OfertasPage {
 
     this.localUser = userService.getLocalUser();
     this.userProfile = userService.getUserProfile();
-    this.viajes =  transporteService.getViajesDisponibles();
-    this.ofertas = pujaService.getTotalOfertas();
+
+
+    //this.ofertas = pujaService.getTotalOfertas();
+  }
+
+  ionViewDidLoad() {
+      this.viajes =  this.transporteService.getViajesDisponibles();
   }
 
   creaViaje(){
-     this.navCtrl.push(NuevoViajePage);
-  }
+    this.navCtrl.push(NuevoViajePage);
+   }
 
   viewDetails(idViaje) {
     this.navCtrl.push(DetallePage, {idViaje:idViaje});
@@ -81,6 +86,4 @@ export class OfertasPage {
     });
     newTaskModal.present( newTaskModal );
   }
-
-
 }

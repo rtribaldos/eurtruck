@@ -49,11 +49,27 @@ export class PujaService{
     return  pujasObservable =  Observable.of(pujas);
   }
 
+  public getNumPujasByViaje(idViaje): any{
+
+    this.ofertas= this.database.list('/ofertas',{
+      query:{
+        orderByChild: 'idViaje',
+        equalTo: idViaje
+      }
+    });
+
+      this.ofertas.subscribe(ofertas => {
+
+          return ofertas.length;
+      });
+    return 0;
+  }
+
   public getOfertasByViaje(idViaje): Observable<Puja[]>{
     let pujasObservable = new Observable<Puja[]>();
     let pujas=[];
 
-   this.ofertas= this.database.list('/ofertas',{
+    this.ofertas= this.database.list('/ofertas',{
       query:{
         orderByChild: 'idViaje',
         equalTo: idViaje
@@ -61,6 +77,8 @@ export class PujaService{
     });
 
     this.ofertas.subscribe(items => {
+       console.log('* pujas ' + items.length);
+
         items.forEach(item => {
         let usuarioOferta = this.userService.getUserProfileById(item.idUsuario);
         let puja = new Puja();

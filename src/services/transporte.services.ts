@@ -3,19 +3,15 @@ import { FirebaseListObservable, AngularFireDatabase,
   FirebaseObjectObservable  } from 'angularfire2/database';
 import { Observable, Subscriber } from 'rxjs';
 import { Transporte } from '../app/transporte';
+import { PujaService } from '../services/puja.services';
 
 
 @Injectable()
 export class TransporteService{
 
-  viajes: any;
-  viajesFiltrados: any;
-  viaje: any;
+  viajes: FirebaseListObservable<any>;
 
-  /// Active filter rules
- filters = {}
-
-  constructor(public database: AngularFireDatabase) {
+  constructor(public database: AngularFireDatabase, public pujaService: PujaService) {
     this.viajes=this.database.list('/viajes',{
        query:{
          orderByChild: 'fechaOrden'
@@ -23,24 +19,29 @@ export class TransporteService{
      })
   }
 
-public getViajesDisponibles(){
-   let viajesFiltrados=[];
+  public getViajes() :FirebaseListObservable<any>{
+
+    return this.viajes;
+  }
+
+public getViajesDisponibles() : Observable<any>{
+   let viajesFiltrados = [];
    this.viajes.subscribe(viajes => {
        viajes.forEach(viaje => {
          if(viaje.idTransportista==''){
            viajesFiltrados.push(viaje);
-         }
+        }
        });
      });
-     return  Observable.of(viajesFiltrados);
+     return Observable.of(viajesFiltrados);
 }
 
 
-public getViaje(id){
+public getViaje(id): FirebaseObjectObservable<any>{
     //console.log('buscando viaje: ' + id);
-    this.viaje= this.database.object('viajes/' + id);
+    return this.database.object('viajes/' + id);
   //  this.viaje.subscribe(console.log);
-     return this.viaje;
+
 }
 
 updateViaje(viaje){
@@ -57,20 +58,39 @@ updateViaje(viaje){
    });
  }
 
- public getOfertasPublicadas(id){
+ public getOfertasPublicadas(id):  Observable<Transporte[]>{
    console.log('buscando ofertas para el user ' + id);
    let viajesFiltrados=[];
    this.viajes.subscribe(viajes => {
        viajes.forEach(viaje => {
          if(viaje.userId==id){
-           viajesFiltrados.push(viaje);
+           let transporte = new Transporte();
+           transporte.carga = viaje.carga;
+           transporte.codigoLavado = viaje.codigoLavado;
+           transporte.destino = viaje.destino;
+           transporte.especificaciones = viaje.especificaciones;
+           transporte.fechaCarga = viaje.fechaCarga;
+           transporte.fechaCreacion = viaje.fechaCreacion;
+           transporte.fechaDescarga = viaje.fechaDescarga;
+           transporte.fechaOrden = viaje.fechaOrden;
+           transporte.idTransporte = viaje.$key;
+
+           transporte.idTransportista = viaje.idTransportista;
+           transporte.mercancia = viaje.mercancia;
+
+             transporte.numPujas=this.pujaService.getNumPujasByViaje(viaje.$key);
+
+           transporte.observaciones = viaje.observaciones;
+           transporte.origen = viaje.origen;
+           viajesFiltrados.push(transporte);
+           //viajesFiltrados.push(viaje);
          }
        });
      });
    return  Observable.of(viajesFiltrados);
 }
 
- public getOfertasAsignadas(id){
+ public getOfertasAsignadas(id) : Observable<any[]>{
    console.log('buscando ofertas asignadas para el user ' + id);
    let viajesFiltrados=[];
    this.viajes.subscribe(viajes => {

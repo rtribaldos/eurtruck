@@ -13,4 +13,5 @@ export class Transporte{
     idTransportista: string;
     fechaCreacion: number;
     fechaOrden: number;
+    numPujas: number;
 }

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { NavController } from 'ionic-angular';
 import { FirebaseListObservable, AngularFireDatabase  } from 'angularfire2/database';
 import { OfertasPage } from '../ofertas/ofertas';
-
+import { TransporteService } from '../../services/transporte.services';
 declare var google;
 
 @Component({
@@ -37,10 +37,10 @@ export class NuevoViajePage {
 
 
     constructor(public navCtrl: NavController, public builder: FormBuilder,
-        public database: AngularFireDatabase) {
+        public transporteService: TransporteService ) {
 
       this.localUser= JSON.parse(window.localStorage.getItem('user'));
-      this.viajes = this.database.list('/viajes');
+      this.viajes = transporteService.getViajes();
       this.myForm = builder.group({
         'origen': ['', Validators.required],
         'destino': ['', Validators.required],
@@ -82,9 +82,9 @@ export class NuevoViajePage {
         userId: this.localUser.uid,
         done: false,
         fechaCreacion: fechaEnMilis,
-        fechaOrden: (-1 * fechaEnMilis)        
+        fechaOrden: (-1 * fechaEnMilis)
      });
-     this.navCtrl.popTo(OfertasPage);
+     this.navCtrl.setRoot(OfertasPage);
     }
 
     ionViewDidLoad(){
