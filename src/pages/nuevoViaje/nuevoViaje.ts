@@ -64,9 +64,50 @@ export class NuevoViajePage {
       var destinoVar = this.autocompleteDestino.getPlace().geometry.location.toJSON()
       destinoVar.formatted_address = this.autocompleteDestino.getPlace().formatted_address;
       destinoVar.name = this.autocompleteDestino.getPlace().name;
+
+
+      var arrayLength = this.autocompleteDestino.getPlace().address_components.length;
+      for (var i = 0; i < arrayLength; i++) {
+        if (this.autocompleteDestino.getPlace().address_components[i].types[0] === 'postal_code') {
+          destinoVar.postal_code = this.autocompleteDestino.getPlace().address_components[i].long_name;
+        }
+        if (this.autocompleteDestino.getPlace().address_components[i].types[0] === 'country') {
+          destinoVar.pais = this.autocompleteDestino.getPlace().address_components[i].long_name;
+        }
+        if (this.autocompleteDestino.getPlace().address_components[i].types[0] === 'administrative_area_level_1') {
+          destinoVar.comunidad = this.autocompleteDestino.getPlace().address_components[i].long_name;
+        }
+        if (this.autocompleteDestino.getPlace().address_components[i].types[0] === 'administrative_area_level_2') {
+          destinoVar.provincia = this.autocompleteDestino.getPlace().address_components[i].long_name;
+        }
+        if (this.autocompleteDestino.getPlace().address_components[i].types[0] === 'locality') {
+          destinoVar.localidad = this.autocompleteDestino.getPlace().address_components[i].long_name;
+        }
+      }
+
       var origenVar = this.autocompleteOrigen.getPlace().geometry.location.toJSON()
       origenVar.formatted_address = this.autocompleteOrigen.getPlace().formatted_address;
       origenVar.name = this.autocompleteOrigen.getPlace().name;
+
+      arrayLength = this.autocompleteOrigen.getPlace().address_components.length;
+      for (var i = 0; i < arrayLength; i++) {
+        if (this.autocompleteOrigen.getPlace().address_components[i].types[0] === 'postal_code') {
+          origenVar.postal_code = this.autocompleteOrigen.getPlace().address_components[i].long_name;
+        }
+        if (this.autocompleteOrigen.getPlace().address_components[i].types[0] === 'country') {
+          origenVar.pais = this.autocompleteOrigen.getPlace().address_components[i].long_name;
+        }
+        if (this.autocompleteOrigen.getPlace().address_components[i].types[0] === 'administrative_area_level_1') {
+          origenVar.comunidad = this.autocompleteOrigen.getPlace().address_components[i].long_name;
+        }
+        if (this.autocompleteOrigen.getPlace().address_components[i].types[0] === 'administrative_area_level_2') {
+          origenVar.provincia = this.autocompleteOrigen.getPlace().address_components[i].long_name;
+        }
+        if (this.autocompleteOrigen.getPlace().address_components[i].types[0] === 'locality') {
+          origenVar.localidad = this.autocompleteOrigen.getPlace().address_components[i].long_name;
+        }
+      }
+
       this.viajes.push({
         destino: destinoVar,
         origen: origenVar,
@@ -86,6 +127,8 @@ export class NuevoViajePage {
      });
      this.navCtrl.popTo(OfertasPage);
     }
+
+
 
     ionViewDidLoad(){
       this.loadMap();
