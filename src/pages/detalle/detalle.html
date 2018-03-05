@@ -34,15 +34,21 @@
         <span item-left>> {{viaje.distancia}} Kms</span>
       </ion-item>
       <ion-item>
+        <span item-left>Id viaje</span>
+        <span item-right>
+          <ion-input text-right disabled type="text" [(ngModel)]="viaje.$key" name="id"></ion-input>
+        </span>
+      </ion-item>
+      <ion-item>
         <span item-left>Mercancia</span>
         <span item-right>
-          <ion-input disabled type="text" [(ngModel)]="viaje.mercancia" name="mercancia"></ion-input>
+          <ion-input text-right disabled type="text" [(ngModel)]="viaje.mercancia" name="mercancia"></ion-input>
         </span>
       </ion-item>
       <ion-item>
         <span item-left>Volumen/carga</span>
         <span item-right>
-          <ion-input disabled type="text" [(ngModel)]="viaje.carga" name="carga"></ion-input>
+          <ion-input text-right disabled type="text" [(ngModel)]="viaje.carga" name="carga"></ion-input>
         </span>
       </ion-item>
       <ion-item>

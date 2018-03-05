@@ -62,8 +62,7 @@ export class OfertadasPage {
  }
 
 
-  ionViewDidLoad() {
-  }
+  
 
   presentActionSheetDetalle(puja) {
    let actionSheet = this.actionSheetCtrl.create({
